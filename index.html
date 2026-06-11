@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="sweep" id="sweep" aria-hidden="true"><b>State of Vice</b></div>
 <header>
   <div class="container">
     <a href="index.html" class="logo">State of <span>Vice</span></a>
@@ -59,7 +60,37 @@
   </div>
 </section>
 
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="hot"><i class="tk-days">—</i> days to launch</span><span class="sep">✦</span>
+    <span>Vice City</span><span class="sep">✦</span>
+    <span>Leonida Keys</span><span class="sep">✦</span>
+    <span>Port Gellhorn</span><span class="sep">✦</span>
+    <span>Ambrosia</span><span class="sep">✦</span>
+    <span>Grassrivers</span><span class="sep">✦</span>
+    <span>Mount Kalaga</span><span class="sep">✦</span>
+    <span class="hot">November 19, 2026</span><span class="sep">✦</span>
+    <span>Trailer 3 — expected soon</span><span class="sep">✦</span>
+    <span class="hot"><i class="tk-days">—</i> days to launch</span><span class="sep">✦</span>
+    <span>Vice City</span><span class="sep">✦</span>
+    <span>Leonida Keys</span><span class="sep">✦</span>
+    <span>Port Gellhorn</span><span class="sep">✦</span>
+    <span>Ambrosia</span><span class="sep">✦</span>
+    <span>Grassrivers</span><span class="sep">✦</span>
+    <span>Mount Kalaga</span><span class="sep">✦</span>
+    <span class="hot">November 19, 2026</span><span class="sep">✦</span>
+    <span>Trailer 3 — expected soon</span><span class="sep">✦</span>
+  </div>
+</div>
+
 <main class="container">
+
+  <div class="stats">
+    <div class="stat reveal"><b class="cnt" data-n="" id="stat-days">0</b><span>Days to launch</span></div>
+    <div class="stat reveal"><b class="cnt" data-n="6">0</b><span>Regions revealed</span></div>
+    <div class="stat reveal"><b class="cnt" data-n="2">0</b><span>Official trailers</span></div>
+    <div class="stat reveal"><b class="cnt" data-n="0">0</b><span>Fake leaks published</span></div>
+  </div>
 
   <div class="regions reveal">
     <a href="articles/gta-6-map-leonida-explained.html">Vice City</a>
@@ -133,8 +164,10 @@
 
 <script>
 (function(){
-  var T=new Date("2026-11-19T00:00:00"),d=document;
+  var T=new Date("2026-11-19T00:00:00"),d=document,
+      rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
   function pad(n){return n<10?"0"+n:""+n}
+  function days(){return Math.max(0,Math.floor((T-new Date())/864e5))}
   function tick(){
     var t=T-new Date();
     if(t<=0){d.getElementById("cd").style.display="none";d.getElementById("cd-note").textContent="GTA 6 is out now — guides are live.";return}
@@ -143,13 +176,82 @@
     d.getElementById("cd-m").textContent=pad(Math.floor(t/6e4)%60);
   }
   tick();setInterval(tick,30000);
+
+  var dy=days();
+  d.querySelectorAll(".tk-days").forEach(function(el){el.textContent=dy});
+  var sd=d.getElementById("stat-days");if(sd)sd.setAttribute("data-n",dy);
+
+  function countUp(el){
+    var target=parseInt(el.getAttribute("data-n")||"0",10);
+    if(rm||target===0){el.textContent=target;return}
+    var t0=null,dur=1100;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}});
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          e.target.querySelectorAll(".cnt").forEach(countUp);
+          io.unobserve(e.target);
+        }
+      });
     },{threshold:.12});
     d.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
   }else{
     d.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in")});
+    d.querySelectorAll(".cnt").forEach(countUp);
+  }
+
+  if(!rm){
+    var scene=d.querySelector(".scene"),hc=d.querySelector(".hero .container"),ticking=false;
+    addEventListener("scroll",function(){
+      if(ticking)return;ticking=true;
+      requestAnimationFrame(function(){
+        var y=scrollY;
+        if(y<900&&scene){
+          scene.style.transform="translateY("+(y*.28)+"px)";
+          if(hc)hc.style.opacity=Math.max(0,1-y/640);
+        }
+        ticking=false;
+      });
+    },{passive:true});
+  }
+
+  if(!rm&&matchMedia("(hover: hover)").matches){
+    d.querySelectorAll(".card").forEach(function(c){
+      c.addEventListener("mousemove",function(ev){
+        var r=c.getBoundingClientRect(),
+            x=(ev.clientX-r.left)/r.width-.5,
+            y=(ev.clientY-r.top)/r.height-.5;
+        c.style.setProperty("--ry",(x*5)+"deg");
+        c.style.setProperty("--rx",(-y*4)+"deg");
+      });
+      c.addEventListener("mouseleave",function(){
+        c.style.setProperty("--ry","0deg");c.style.setProperty("--rx","0deg");
+      });
+    });
+  }
+
+  var sw=d.getElementById("sweep");
+  if(sw&&!rm){
+    d.querySelectorAll('a[href$=".html"]').forEach(function(a){
+      var h=a.getAttribute("href");
+      if(h.indexOf("http")===0)return;
+      a.addEventListener("click",function(ev){
+        if(ev.metaKey||ev.ctrlKey||ev.shiftKey)return;
+        ev.preventDefault();sw.classList.add("on");
+        setTimeout(function(){location.href=h},300);
+      });
+    });
+    addEventListener("pageshow",function(){sw.classList.remove("on")});
   }
 })();
 </script>
