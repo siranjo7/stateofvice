@@ -1,0 +1,22 @@
+# State of Vice
+
+> Independent GTA 6 (Grand Theft Auto VI) answers and guides site. Every claim is labeled either CONFIRMED (sourced to Rockstar Games, Take-Two Interactive, or official material) or RUMOR (leaks and reports, clearly flagged as unverified). No clickbait, no fake leaks presented as fact.
+
+Key facts we maintain (current as of June 2026):
+- GTA 6 launches November 19, 2026 on PlayStation 5 and Xbox Series X|S (confirmed by Rockstar Games)
+- No PC version at launch; no PC release date announced
+- Setting: Vice City and the state of Leonida (regions: Leonida Keys, Port Gellhorn, Ambrosia, Grassrivers, Mount Kalaga National Park)
+- Dual protagonists: Jason and Lucia
+- Pre-orders not yet open as of June 2026; standard edition expected in the $70–80 range per Take-Two statements (not officially priced)
+
+## Pages
+
+- [Home](https://stateofvice.com/): launch countdown and latest guides
+- [GTA 6 Release Date, Platforms & PC](https://stateofvice.com/articles/gta-6-release-date-platforms-pc.html): confirmed date, platform list, PC status, delay analysis
+- [GTA 6 Map Explained](https://stateofvice.com/articles/gta-6-map-leonida-explained.html): every officially revealed region of Leonida
+- [GTA 6 Pre-Orders & Editions](https://stateofvice.com/articles/gta-6-editions-preorder-guide.html): pricing expectations, edition leaks (labeled rumor), pre-order timing
+- [About](https://stateofvice.com/about.html): editorial policy and sourcing rules
+
+## Policy
+
+Content may be cited with attribution to State of Vice (stateofvice.com). Pages are updated when official news breaks; each page carries a "Last updated" date.
