@@ -1,0 +1,37 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Expected GTA 6 edition tiers: standard around 70 to 80 dollars confirmed range, premium and collector editions rumored">
+<defs>
+<linearGradient id="eSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c0818"/><stop offset="1" stop-color="#1d0c2b"/></linearGradient>
+<linearGradient id="eG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b06ef7"/><stop offset=".45" stop-color="#ff2e80"/><stop offset="1" stop-color="#ff9a45"/></linearGradient>
+</defs>
+<rect width="800" height="420" fill="url(#eSky)"/>
+<g stroke="#39d0ff" stroke-width="1" opacity=".12">
+<line x1="0" y1="105" x2="800" y2="105"/><line x1="0" y1="210" x2="800" y2="210"/><line x1="0" y1="315" x2="800" y2="315"/>
+<line x1="200" y1="0" x2="200" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/><line x1="600" y1="0" x2="600" y2="420"/>
+</g>
+<text x="400" y="64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" letter-spacing="8" fill="#eef0f6">EXPECTED EDITION TIERS</text>
+
+<g>
+<rect x="75" y="190" width="190" height="160" rx="14" fill="#11141f" stroke="#2a3047" stroke-width="2"/>
+<text x="170" y="232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#eef0f6">STANDARD</text>
+<text x="170" y="280" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="34" font-weight="900" fill="url(#eG)">$70–80</text>
+<text x="170" y="318" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#8e94a8">Take-Two guidance range</text>
+</g>
+<g>
+<rect x="305" y="150" width="190" height="200" rx="14" fill="#11141f" stroke="#8b5cf6" stroke-width="2"/>
+<text x="400" y="196" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#eef0f6">PREMIUM</text>
+<text x="400" y="246" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="34" font-weight="900" fill="url(#eG)">~$100</text>
+<text x="400" y="284" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#8e94a8">Digital bonuses expected</text>
+<rect x="338" y="306" width="124" height="26" rx="13" fill="rgba(251,191,36,.12)" stroke="#fbbf24"/>
+<text x="400" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">RUMOR</text>
+</g>
+<g>
+<rect x="535" y="110" width="190" height="240" rx="14" fill="#11141f" stroke="#ff2e63" stroke-width="2"/>
+<text x="630" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#eef0f6">COLLECTOR</text>
+<text x="630" y="210" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="34" font-weight="900" fill="url(#eG)">$150+</text>
+<text x="630" y="248" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#8e94a8">Physical extras expected</text>
+<rect x="568" y="306" width="124" height="26" rx="13" fill="rgba(251,191,36,.12)" stroke="#fbbf24"/>
+<text x="630" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">RUMOR</text>
+</g>
+
+<text x="400" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5b6175">No editions officially announced as of June 2026 · stateofvice.com</text>
+</svg>

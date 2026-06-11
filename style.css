@@ -225,6 +225,9 @@ article{padding:46px 0 40px}
   animation:gridmove 5s linear infinite;
   -webkit-mask-image:linear-gradient(to top,black 30%,transparent);
   mask-image:linear-gradient(to top,black 30%,transparent)}
+figure.art{margin:28px 0}
+figure.art img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--border)}
+figure.art figcaption{font-size:.78rem;color:var(--faint);margin-top:9px;text-align:center}
 .crumb{font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--faint);margin-bottom:18px}
 .crumb a{color:var(--faint)}
 .crumb a:hover{color:var(--cyan)}
