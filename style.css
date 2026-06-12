@@ -48,6 +48,11 @@ nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
 /* ===== Hero scene ===== */
 .hero{position:relative;padding:96px 0 110px;text-align:center;overflow:hidden;
   background:linear-gradient(to bottom,#0a0716 0%,#1a0b26 30%,#2b0e2e 55%,#12070f 100%)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-veil{position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,7,22,.66) 0%,rgba(10,7,22,.34) 45%,#12070f 100%)}
+.ch-photo video{width:100%;height:100%;object-fit:cover;display:block}
+@media(prefers-reduced-motion:reduce){.hero-video{display:none}}
 .scene{position:absolute;inset:0;pointer-events:none}
 .sun{
   position:absolute;left:50%;top:46px;transform:translateX(-50%);
