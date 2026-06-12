@@ -357,8 +357,11 @@ footer a{color:var(--muted)}
 .ch-photo::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,#07080d 0%,transparent 30%,transparent 70%,#07080d 100%)}
 .photo-credit{font-size:.7rem;color:var(--faint);letter-spacing:.04em}
-.cast .c img{width:100%;height:140px;object-fit:cover;border-radius:10px;
+.cast .c img,.cast .c video{width:100%;height:140px;object-fit:cover;border-radius:10px;
   margin-bottom:14px;border:1px solid var(--border);display:block}
+.ch-art video{width:100%;height:auto;display:block;border-radius:20px;
+  border:1px solid var(--border2);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+figure.art video{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--border)}
 .interstitial{position:relative;padding:90px 0;text-align:center;overflow:hidden;
   background:linear-gradient(to bottom,#07080d,#1a0b14,#07080d)}
 .interstitial .container{position:relative;z-index:2}
