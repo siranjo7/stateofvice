@@ -479,3 +479,11 @@ figure.art video{width:100%;height:auto;display:block;border-radius:14px;border:
 main.container.wide{padding-top:8px;padding-bottom:8px}
 .container.wide .section-label{margin-top:40px}
 .container.wide .section-label:first-child{margin-top:14px}
+
+/* article comparison tables */
+article table{width:100%;border-collapse:collapse;margin:20px 0 24px;font-size:.95rem;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+article thead th{background:rgba(255,255,255,.05);color:#fff;font-weight:700;font-size:.82rem;letter-spacing:.02em;text-transform:uppercase}
+article th,article td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--border)}
+article tbody tr:last-child td{border-bottom:none}
+article tbody tr:hover{background:rgba(255,255,255,.025)}
+article td:first-child{color:var(--muted);font-weight:600}
