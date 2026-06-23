@@ -61,11 +61,11 @@
     </nav>
   </header>
 
-  <section style="position:relative; height:100vh; min-height:620px; overflow:hidden; background:#07080d; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <video src="assets/press/clips/hero-loop.mp4" poster="assets/press/keyart.jpg" autoplay muted loop playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%;"></video>
+  <section style="position:relative; height:100vh; min-height:620px; overflow:hidden; background:#07080d; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/press/keyart.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%;"><source src="assets/press/clips/hero-couple.mp4" type="video/mp4"><source src="assets/press/clips/hero-loop.mp4" type="video/mp4"></video>
     <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,8,13,.55) 0%, rgba(7,8,13,.2) 30%, rgba(7,8,13,.45) 64%, #07080d 100%);"></div>
     <div style="position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 42%, transparent 40%, rgba(7,8,13,.6) 100%);"></div>
-    <div style="position:relative; z-index:3; text-align:center; padding:0 20px; animation:heroIn .9s cubic-bezier(.2,.7,.2,1) both;">
+    <div style="position:relative; z-index:3; text-align:center; padding:0 20px; margin-bottom:clamp(64px,10vh,104px); animation:heroIn .9s cubic-bezier(.2,.7,.2,1) both;">
       <p style="margin:0 0 22px; font-size:12px; font-weight:700; letter-spacing:.4em; color:#39d0ff; text-transform:uppercase;">GTA VI · Leonida · Vice City</p>
       <p style="margin:0 0 16px; font-family:'Anton',sans-serif; font-size:clamp(15px,2.2vw,20px); letter-spacing:.18em; color:#8e94a8; text-transform:uppercase;">Launches in</p>
       <div style="display:flex; gap:clamp(10px,2.5vw,26px); justify-content:center; margin-bottom:34px;">
@@ -232,7 +232,7 @@
   ];
   var N=CHARS.length, ai=0, animating=false;
   var wrap=document.getElementById('char-cards');
-  wrap.innerHTML=CHARS.map(function(c,i){return '<div class="ccard" data-i="'+i+'"><div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#11141f;border:1px solid '+c.glow+';"><video data-src="'+c.video+'" poster="'+c.poster+'" loop muted playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:'+c.pos+';"></video><div style="position:absolute;inset:0;background:linear-gradient(180deg,'+c.glow+'22 0%,transparent 35%);"></div><div style="position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.08em;background:rgba(57,208,255,.16);color:#39d0ff;border:1px solid rgba(57,208,255,.4);">CONFIRMED</div><div style="position:absolute;left:0;right:0;bottom:0;padding:18px 16px;background:linear-gradient(180deg,transparent,rgba(7,8,13,.92));"><div style="font-family:\'Anton\',sans-serif;font-size:clamp(20px,3vw,34px);line-height:.95;">'+c.name+'</div></div></div></div>';}).join('');
+  wrap.innerHTML=CHARS.map(function(c,i){return '<div class="ccard" data-i="'+i+'"><div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#11141f;border:1px solid '+c.glow+';"><img src="'+c.poster+'" alt="'+c.name+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:'+c.pos+';"><video data-src="'+c.video+'" loop muted playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:'+c.pos+';opacity:0;transition:opacity .45s ease;"></video><div style="position:absolute;inset:0;background:linear-gradient(180deg,'+c.glow+'22 0%,transparent 35%);"></div><div style="position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.08em;background:rgba(57,208,255,.16);color:#39d0ff;border:1px solid rgba(57,208,255,.4);">CONFIRMED</div><div style="position:absolute;left:0;right:0;bottom:0;padding:18px 16px;background:linear-gradient(180deg,transparent,rgba(7,8,13,.92));"><div style="font-family:\'Anton\',sans-serif;font-size:clamp(20px,3vw,34px);line-height:.95;">'+c.name+'</div></div></div></div>';}).join('');
   var cardEls=[].slice.call(wrap.querySelectorAll('.ccard'));
   function isMobile(){return window.innerWidth<760;}
   function setStyle(el,o){for(var k in o){el.style[k]=o[k];}}
@@ -252,7 +252,7 @@
     document.getElementById('char-name').textContent=a.name;
     document.getElementById('char-blurb').textContent=a.blurb;
     document.getElementById('char-glow').style.background='radial-gradient(80% 80% at 50% 70%, '+a.glow+'22, transparent 60%)';
-    cardEls.forEach(function(el,i){var v=el.querySelector('video');if(!v)return;if(i===ai){if(!v.getAttribute('src')&&v.dataset.src)v.setAttribute('src',v.dataset.src);var p=v.play();if(p&&p.catch)p.catch(function(){});}else{try{v.pause();}catch(e){}}});
+    cardEls.forEach(function(el,i){var v=el.querySelector('video');if(!v)return;if(i===ai){if(!v.getAttribute('src')&&v.dataset.src)v.setAttribute('src',v.dataset.src);v.style.opacity='1';var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.style.opacity='0';try{v.pause();}catch(e){}}});
   }
   function go(dir){if(animating)return;animating=true;ai=dir==='next'?(ai+1)%N:(ai+N-1)%N;layout();setTimeout(function(){animating=false;},660);}
   document.getElementById('char-next').addEventListener('click',function(){go('next');});
