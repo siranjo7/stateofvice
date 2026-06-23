@@ -52,6 +52,21 @@
   </div></div>
 </div>
 
+
+<section id="characters" style="position:relative; height:min(86vh,820px); min-height:560px; overflow:hidden; background:#07080d; border-bottom:1px solid #1e2233;">
+  <div id="char-glow" style="position:absolute; inset:0; transition:background 650ms;"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,8,13,.4), transparent 30%, transparent 70%, #07080d);"></div>
+  <div style="position:absolute; top:clamp(22px,4vw,44px); left:0; right:0; z-index:30; text-align:center; pointer-events:none;"><span style="font-size:12px; font-weight:700; letter-spacing:.3em; color:#39d0ff;">PEOPLE OF LEONIDA</span></div>
+  <div style="position:absolute; left:0; right:0; top:16%; z-index:2; display:flex; align-items:center; justify-content:center; pointer-events:none; user-select:none;"><span id="ghost-name" style="font-family:'Anton',sans-serif; font-size:clamp(80px,24vw,360px); line-height:1; color:rgba(238,240,246,.05); text-transform:uppercase; letter-spacing:-.02em; white-space:nowrap;"></span></div>
+  <div id="char-cards" style="position:absolute; inset:0; z-index:3;"></div>
+  <div style="position:absolute; bottom:clamp(20px,4vw,52px); left:clamp(16px,5vw,64px); z-index:40; max-width:360px;">
+    <p id="char-name" style="margin:0 0 4px; font-size:clamp(15px,2vw,20px); font-weight:800; letter-spacing:.04em; text-transform:uppercase;"></p>
+    <p id="char-blurb" style="margin:0 0 18px; font-size:13px; line-height:1.6; color:#8e94a8;"></p>
+    <div style="display:flex; gap:12px;"><button class="cbtn" id="char-prev" aria-label="Previous character">&larr;</button><button class="cbtn" id="char-next" aria-label="Next character">&rarr;</button></div>
+  </div>
+  <div style="position:absolute; bottom:clamp(20px,4vw,52px); right:clamp(16px,5vw,40px); z-index:40; font-family:'Anton',sans-serif; font-size:clamp(20px,4vw,52px); letter-spacing:-.02em; text-transform:uppercase; color:#eef0f6; pointer-events:none;">Meet the cast</div>
+</section>
+
 <article class="container">
 <div class="meta-row"><span>Last updated <strong>June 12, 2026</strong></span><span class="dot"></span><span>Bios from Rockstar's official site</span><span class="dot"></span><span>Art from the official press kit</span></div>
 
@@ -130,5 +145,49 @@
   </div>
   <p class="legal">State of Vice is an unofficial fan site and is not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of their respective owners. Press assets and trailer stills are used editorially with credit to the rights holders.</p>
 </div></footer>
+<script>
+(function(){
+  var CHARS=[
+    {name:'LUCIA',video:'../assets/press/clips/lucia.mp4',poster:'../assets/press/lucia-01.jpg',pos:'50% 22%',glow:'#ff2e63',blurb:'One of two playable leads and the first woman to headline a mainline GTA. Out of a Leonida penitentiary and hungry for a way up.'},
+    {name:'JASON',video:'../assets/press/clips/jason.mp4',poster:'../assets/press/jason-01.jpg',pos:'50% 25%',glow:'#ff7a45',blurb:'The second playable lead. An ex-soldier doing odd jobs for the wrong people around the Keys, partnered with Lucia.'},
+    {name:'BOOBIE IKE',video:'../assets/press/clips/boobie.mp4',poster:'../assets/press/boobie-01.jpg',pos:'50% 20%',glow:'#39d0ff',blurb:'A Vice City businessman and club owner who came up the hard way and built a money-and-music empire.'},
+    {name:'DRE\u2019QUAN',video:'../assets/press/clips/drequan.mp4',poster:'../assets/press/drequan-01.jpg',pos:'50% 18%',glow:'#8b5cf6',blurb:'An aspiring music mogul trying to turn connections into a record-label come-up.'},
+    {name:'CAL',video:'../assets/press/clips/cal.mp4',poster:'../assets/press/cal-01.jpg',pos:'50% 20%',glow:'#ffd34d',blurb:'A paranoid, housebound associate of Jason who keeps one ear on the police radio out in the Keys.'},
+    {name:'RAUL',video:'../assets/press/clips/raul.mp4',poster:'../assets/press/raul-01.jpg',pos:'50% 20%',glow:'#ff2e63',blurb:'A veteran bank robber assembling an ambitious crew \u2014 a dangerous opportunity for Jason and Lucia.'},
+    {name:'BRIAN',video:'../assets/press/clips/brian.mp4',poster:'../assets/press/brian-01.jpg',pos:'50% 20%',glow:'#39d0ff',blurb:'A laid-back, hard-living fixture of the Leonida Keys whom Jason runs jobs for out on the water.'},
+    {name:'REAL DIMEZ',video:'../assets/press/clips/dimez.mp4',poster:'../assets/press/dimez-01.jpg',pos:'50% 18%',glow:'#8b5cf6',blurb:'A Vice City social-media rap duo whose hustle blurs the line between going viral and getting paid.'}
+  ];
+  var N=CHARS.length, ai=0, animating=false;
+  var wrap=document.getElementById('char-cards'); if(!wrap) return;
+  wrap.innerHTML=CHARS.map(function(c,i){return '<div class="ccard" data-i="'+i+'"><div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#11141f;border:1px solid '+c.glow+';"><img src="'+c.poster+'" alt="'+c.name+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:'+c.pos+';"><video data-src="'+c.video+'" loop muted playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:'+c.pos+';opacity:0;transition:opacity .45s ease;"></video><div style="position:absolute;inset:0;background:linear-gradient(180deg,'+c.glow+'22 0%,transparent 35%);"></div><div style="position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.08em;background:rgba(57,208,255,.16);color:#39d0ff;border:1px solid rgba(57,208,255,.4);">CONFIRMED</div><div style="position:absolute;left:0;right:0;bottom:0;padding:18px 16px;background:linear-gradient(180deg,transparent,rgba(7,8,13,.92));"><div style="font-family:\'Anton\',sans-serif;font-size:clamp(20px,3vw,34px);line-height:.95;">'+c.name+'</div></div></div></div>';}).join('');
+  var cardEls=[].slice.call(wrap.querySelectorAll('.ccard'));
+  function isMobile(){return window.innerWidth<760;}
+  function setStyle(el,o){for(var k in o){el.style[k]=o[k];}}
+  function layout(){
+    var mob=isMobile();
+    cardEls.forEach(function(el,i){
+      var role = i===ai?'center':i===(ai+N-1)%N?'left':i===(ai+1)%N?'right':'back';
+      var st={position:'absolute',transform:'translateX(-50%)'};
+      if(role==='center'){st.left='50%';st.bottom=mob?'14%':'6%';st.height=mob?'58%':'80%';st.transform='translateX(-50%) scale('+(mob?1:1.12)+')';st.filter='none';st.opacity='1';st.zIndex='20';st.boxShadow='0 24px 70px '+CHARS[i].glow+'66';}
+      else if(role==='left'){st.left=mob?'18%':'27%';st.bottom=mob?'30%':'14%';st.height=mob?'30%':'46%';st.transform='translateX(-50%) scale(.92)';st.filter='blur(2px)';st.opacity='.78';st.zIndex='10';st.boxShadow='none';}
+      else if(role==='right'){st.left=mob?'82%':'73%';st.bottom=mob?'30%':'14%';st.height=mob?'30%':'46%';st.transform='translateX(-50%) scale(.92)';st.filter='blur(2px)';st.opacity='.78';st.zIndex='10';st.boxShadow='none';}
+      else{st.left='50%';st.bottom=mob?'32%':'16%';st.height=mob?'24%':'38%';st.transform='translateX(-50%) scale(.82)';st.filter='blur(4px)';st.opacity='.45';st.zIndex='5';st.boxShadow='none';}
+      setStyle(el,st);
+    });
+    var a=CHARS[ai];
+    document.getElementById('ghost-name').textContent=a.name;
+    document.getElementById('char-name').textContent=a.name;
+    document.getElementById('char-blurb').textContent=a.blurb;
+    document.getElementById('char-glow').style.background='radial-gradient(80% 80% at 50% 70%, '+a.glow+'22, transparent 60%)';
+    cardEls.forEach(function(el,i){var v=el.querySelector('video');if(!v)return;if(i===ai){if(!v.getAttribute('src')&&v.dataset.src)v.setAttribute('src',v.dataset.src);v.style.opacity='1';var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.style.opacity='0';try{v.pause();}catch(e){}}});
+  }
+  function go(dir){if(animating)return;animating=true;ai=dir==='next'?(ai+1)%N:(ai+N-1)%N;layout();setTimeout(function(){animating=false;},660);}
+  document.getElementById('char-next').addEventListener('click',function(){go('next');});
+  document.getElementById('char-prev').addEventListener('click',function(){go('prev');});
+  cardEls.forEach(function(el,i){el.addEventListener('click',function(){if(i!==ai){ai=i;layout();}});});
+  window.addEventListener('resize',layout);
+  layout();
+})();
+</script>
 </body>
 </html>
