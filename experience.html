@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Theft Auto VI — The Experience | State of Vice</title>
+<meta name="description" content="An immersive walkthrough of Grand Theft Auto VI: the Ultimate Edition, the Vintage Vice City Pack pre-order bonus, trailers and the world of Leonida — official art, panel by panel.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="State of Vice">
+<meta property="og:title" content="GTA VI — The Experience | State of Vice">
+<meta property="og:description" content="The Ultimate Edition and Vintage Vice City Pack, immersive and full-screen.">
+<meta property="og:url" content="https://stateofvice.com/experience.html">
+<meta property="og:image" content="https://stateofvice.com/assets/og/og-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<style>
+  :root{
+    --bg:#07080d;--text:#eef0f6;--muted:#9aa0b4;--faint:#5b6175;
+    --pink:#ff2e63;--orange:#ff7a45;--cyan:#39d0ff;--gold:#ffd34d;--border:#1e2233;
+    --grad:linear-gradient(90deg,var(--pink),var(--orange));
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img,video{display:block;}
+  ::selection{background:rgba(255,46,99,.35);}
+
+  /* scroll-snap scroller */
+  .scroller{height:100vh;height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+  .panel{position:relative;height:100vh;height:100dvh;scroll-snap-align:start;overflow:hidden;display:flex;}
+  .bgmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;animation:slowzoom 22s ease-in-out infinite alternate;}
+  @keyframes slowzoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+  .scrim{position:absolute;inset:0;z-index:1;}
+  .scrim.right{background:linear-gradient(90deg,rgba(7,8,13,.15) 0%,rgba(7,8,13,.05) 35%,rgba(7,8,13,.78) 72%,rgba(7,8,13,.96) 100%);}
+  .scrim.bottom{background:linear-gradient(180deg,rgba(7,8,13,.55) 0%,transparent 30%,transparent 55%,rgba(7,8,13,.95) 100%);}
+  .scrim.center{background:radial-gradient(120% 90% at 50% 45%,transparent 38%,rgba(7,8,13,.72) 100%);}
+
+  /* top bar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,46px);pointer-events:none;}
+  .topbar a,.topbar button{pointer-events:auto;}
+  .wm{display:flex;flex-direction:column;line-height:.8;}
+  .wm small{font-size:9px;letter-spacing:.42em;color:#cfd3e0;font-weight:700;margin-bottom:3px;text-shadow:0 1px 8px rgba(0,0,0,.6);}
+  .wm b{font-family:'Anton',sans-serif;font-size:30px;letter-spacing:.02em;font-weight:400;text-shadow:0 2px 14px rgba(0,0,0,.6);}
+  .wm .vi{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .burger{width:50px;height:50px;border-radius:50%;background:rgba(17,20,31,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .burger:hover{border-color:var(--pink);background:rgba(255,46,99,.18);}
+
+  /* hero content */
+  .hero-wrap{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(70px,12vh,120px);text-align:center;}
+  .hero-logo{font-family:'Anton',sans-serif;font-size:clamp(70px,16vw,200px);line-height:.9;letter-spacing:.01em;text-shadow:0 8px 40px rgba(0,0,0,.5);}
+  .hero-logo .vi{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-sub{margin-top:14px;font-size:clamp(13px,1.6vw,17px);letter-spacing:.34em;text-transform:uppercase;color:#cfd3e0;font-weight:600;}
+  .corner{position:absolute;z-index:3;bottom:26px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cfd3e0;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.7);}
+  .corner.l{left:clamp(18px,4vw,46px);}
+  .corner.r{right:clamp(18px,4vw,46px);display:flex;gap:14px;align-items:center;}
+  .corner .pill{padding:7px 13px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(17,20,31,.4);}
+  .scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:5px;color:#cfd3e0;}
+  .scrollcue span:first-child{font-size:10px;letter-spacing:.3em;font-weight:600;}
+  .scrollcue span:last-child{font-size:18px;animation:cue 1.6s ease-in-out infinite;}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(7px);opacity:1}}
+
+  /* showcase content (right card) */
+  .content{position:relative;z-index:2;margin-left:auto;align-self:center;width:min(46%,560px);padding:0 clamp(28px,5vw,72px) 0 0;}
+  .content.left{margin-left:clamp(28px,6vw,90px);margin-right:auto;align-self:flex-end;padding-bottom:clamp(60px,10vh,120px);width:min(60%,640px);}
+  .content.story{margin:auto;text-align:center;width:min(820px,86%);padding:0 20px;}
+  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+  .kicker.gold{color:var(--gold);}
+  .ptitle{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(40px,6.4vw,96px);line-height:.92;letter-spacing:.005em;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.55);}
+  .pdesc{margin-top:20px;font-size:clamp(15px,1.25vw,18px);line-height:1.7;color:#d3d7e4;max-width:46ch;}
+  .content.left .pdesc,.content.story .pdesc{max-width:none;}
+  .lrn{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:13px 24px;border-radius:999px;background:var(--grad);color:#fff;font-weight:700;font-size:15px;box-shadow:0 10px 30px rgba(255,46,99,.34);transition:.2s;}
+  .lrn:hover{filter:brightness(1.08);transform:translateY(-2px);}
+  .backpill{position:absolute;top:clamp(76px,11vh,104px);left:clamp(18px,4vw,46px);z-index:5;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(17,20,31,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
+  .backpill:hover{border-color:var(--cyan);}
+  .seclabel{position:absolute;top:clamp(76px,11vh,104px);right:clamp(18px,4vw,46px);z-index:5;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+
+  /* trailers panel */
+  .trailers{flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(80% 80% at 50% 30%,#1a1230,#07080d 70%);}
+  .trailers .ptitle{margin-bottom:8px;}
+  .tcards{position:relative;z-index:2;display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin-top:34px;padding:0 20px;}
+  .tcard{width:min(360px,40vw);cursor:pointer;text-align:left;transition:transform .25s;}
+  .tcard:hover{transform:translateY(-5px);}
+  .tcard .thumb{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;background:#11141f;}
+  .tcard .thumb img{width:100%;height:100%;object-fit:cover;}
+  .tcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .tcard .play span{width:62px;height:62px;border-radius:50%;background:rgba(7,8,13,.6);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;backdrop-filter:blur(4px);}
+  .tcard h4{margin:12px 2px 2px;font-size:16px;}
+  .tcard p{margin:0 2px;font-size:13px;color:var(--muted);}
+
+  /* menu overlay */
+  .menu{position:fixed;inset:0;z-index:80;background:rgba(7,8,13,.96);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .menu.open{opacity:1;pointer-events:auto;}
+  .menu a{font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,60px);text-transform:uppercase;color:var(--muted);transition:.2s;line-height:1.15;}
+  .menu a:hover{color:var(--text);}
+  .menu .close{position:absolute;top:24px;right:30px;font-size:30px;color:#fff;cursor:pointer;background:none;border:none;}
+  .menu small{margin-top:26px;color:var(--faint);letter-spacing:.2em;font-size:12px;text-transform:uppercase;}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:5vw;}
+  .lightbox.open{display:flex;}
+  .lightbox .frame{width:min(1100px,100%);aspect-ratio:16/9;border-radius:12px;overflow:hidden;}
+  .lightbox iframe{width:100%;height:100%;border:0;}
+  .lightbox .x{position:absolute;top:22px;right:30px;font-size:30px;color:#fff;cursor:pointer;background:none;border:none;}
+
+  /* progress dots */
+  .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:9px;}
+  .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);transition:.3s;cursor:pointer;display:block;}
+  .dots i.on{background:var(--pink);transform:scale(1.35);}
+  @media(max-width:820px){
+    .content,.content.left{width:auto;margin:0 18px;align-self:flex-end;padding:0 0 90px;}
+    .scrim.right{background:linear-gradient(180deg,rgba(7,8,13,.2),transparent 30%,rgba(7,8,13,.95));}
+    .dots{display:none;}
+    .corner.r .pill:nth-child(n+2){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="wm"><small>STATE OF</small><b><span class="vi">VI</span>CE</b></a>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</div>
+
+<nav class="menu" id="menu">
+  <button class="close" id="menuClose" aria-label="Close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="articles/gta-6-map-leonida-explained.html">Map of Leonida</a>
+  <a href="articles/gta-6-characters-confirmed.html">Characters</a>
+  <a href="articles/gta-6-editions-preorder-guide.html">Pre-orders &amp; Editions</a>
+  <a href="articles/gta-6-price-what-to-budget.html">Pricing</a>
+  <a href="wallpapers.html">Wallpapers</a>
+  <small>Pre-order on June 25 · Launches Nov 19, 2026</small>
+</nav>
+
+<div class="dots" id="dots"></div>
+
+<main class="scroller" id="scroller">
+
+  <!-- HERO -->
+  <section class="panel" data-label="Home">
+    <video class="bgmedia" autoplay muted loop playsinline poster="assets/press/keyart.jpg" style="animation:none;">
+      <source src="assets/press/clips/hero-couple.mp4" type="video/mp4">
+      <source src="assets/press/clips/hero-loop.mp4" type="video/mp4">
+    </video>
+    <div class="scrim center"></div><div class="scrim bottom"></div>
+    <div class="hero-wrap">
+      <div class="hero-logo"><span class="vi">VI</span>CE CITY</div>
+      <div class="hero-sub">Grand Theft Auto VI · The State of Leonida</div>
+    </div>
+    <div class="corner l">Pre-order on June 25</div>
+    <div class="corner r"><span class="pill">PS5</span><span class="pill">Xbox Series X|S</span></div>
+    <div class="scrollcue"><span>SCROLL</span><span>↓</span></div>
+  </section>
+
+  <!-- STORY -->
+  <section class="panel" data-label="Vice City">
+    <img class="bgmedia" src="assets/press/keyart-logo.jpg" alt="Vice City key art" loading="lazy">
+    <div class="scrim center"></div><div class="scrim bottom"></div>
+    <div class="content story">
+      <div class="kicker">Vice City, USA.</div>
+      <h2 class="ptitle">The Darkest Side<br>of the Sunniest Place</h2>
+      <p class="pdesc">Jason and Lucia have always known the deck is stacked against them. When an easy score goes wrong, they're thrown into a criminal conspiracy stretching across the state of Leonida — forced to rely on each other more than ever to make it out alive.</p>
+    </div>
+  </section>
+
+  <!-- TRAILERS -->
+  <section class="panel trailers" data-label="Trailers">
+    <div class="content story" style="position:relative;z-index:2;">
+      <div class="kicker">Watch</div>
+      <h2 class="ptitle">The Trailers</h2>
+      <div class="tcards">
+        <div class="tcard" data-yt="VQRLujxTm3c">
+          <div class="thumb"><img src="assets/press/keyart.jpg" alt="GTA VI Trailer 2"><div class="play"><span>▶</span></div></div>
+          <h4>Grand Theft Auto VI — Trailer 2</h4><p>“Jason &amp; Lucia” · May 2025</p>
+        </div>
+        <div class="tcard" data-yt="QdBZY2fkU-0">
+          <div class="thumb"><img src="assets/press/keyart-logo.jpg" alt="GTA VI Trailer 1"><div class="play"><span>▶</span></div></div>
+          <h4>Grand Theft Auto VI — Trailer 1</h4><p>“Vice City” · Dec 2023</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VINTAGE VICE CITY PACK -->
+  <section class="panel" data-label="Pre-order Bonus">
+    <img class="bgmedia" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-01.jpg" alt="Vintage Vice City Pack" loading="lazy">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    <div class="content left">
+      <span class="kicker gold">Pre-order Bonus</span>
+      <h2 class="ptitle">Vintage<br>Vice City Pack</h2>
+      <p class="pdesc">Pre-order to get unique benefits that flash back to when the neon burned brightest — the two-tone '55 Vapid Stanier, a Shore Court Garage by Ocean Beach, retro looks for Jason and Lucia, and a Tommy Vercetti-style weapon pattern. Free with all digital purchases before Nov 20, 2026.</p>
+      <a class="lrn" href="articles/gta-6-editions-preorder-guide.html">Learn more →</a>
+    </div>
+  </section>
+
+  <!-- ULTIMATE EDITION SHOWCASE (panels injected by JS) -->
+  <div id="showcase"></div>
+
+  <!-- OUTRO CTA -->
+  <section class="panel" data-label="Pre-order">
+    <img class="bgmedia" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-02.jpg" alt="GTA VI" loading="lazy">
+    <div class="scrim center"></div><div class="scrim bottom"></div>
+    <div class="content story">
+      <div class="kicker">November 19, 2026</div>
+      <h2 class="ptitle">Be Ready for Leonida</h2>
+      <p class="pdesc">Pre-orders open June 25 on PS5 and Xbox Series X|S. Get the honest breakdown — every claim CONFIRMED or RUMOR — at State of Vice.</p>
+      <a class="lrn" href="articles/gta-6-editions-preorder-guide.html">Pre-order guide →</a>
+      <p style="margin-top:30px;font-size:12px;color:var(--faint);max-width:none;">State of Vice is an unofficial fan site. Not affiliated with Rockstar Games or Take-Two Interactive. Official art © Rockstar Games, used editorially.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox"><button class="x" id="lbX">✕</button><div class="frame" id="lbFrame"></div></div>
+
+<script>
+const A="assets/press/stateofvice_rockstar_assets_ALL/";
+const PANELS=[
+ {img:"ult-01.jpg",kick:"Grand Theft Auto VI",title:"Ultimate<br>Edition",desc:"Seize everything this massive world has to offer — an exclusive collection of premium vehicles, weapons, apparel and action around every corner, threaded across all of Jason and Lucia's story."},
+ {img:"ult-grotti-cheetah-01.jpg",kick:"Vehicles",title:"Grotti<br>Cheetah",desc:"Grotti's signature mid-'90s supercar returns with a minimalist, retro-futuristic livery — pure Vice City speed."},
+ {img:"ult-vapid-buggy-01.jpg",kick:"Vehicles",title:"Vapid<br>Dominator Buggy",desc:"A '67 Mud Club monster built for off-road punishment, stashed at the Paradise Garage in Watson Bay."},
+ {img:"ult-safehouse-vehicles-01.jpg",kick:"Vehicles",title:"Jason's<br>Safehouse Vehicles",desc:"Switch gears and soak up the sun on an Army-fatigue Dinka Enduro motorcycle and Crest Kayak — or a modded Vapid Ganado pickup."},
+ {img:"ult-squalo-01.jpg",kick:"Vehicles",title:"Shitzu<br>Squalo",desc:"A gradient pink-and-blue speedboat with an explosives-laden weapons crate — for when the job is offshore."},
+ {img:"ult-wyman-car-collection-01.jpg",kick:"Special Commission",title:"Wyman Classic<br>Car Collection",desc:"A standing commission from Wyman to track down and revive abandoned classics — including four cars found only in the Ultimate Edition."},
+ {img:"ult-saras-salon-01.jpg",kick:"Business",title:"Sara's<br>Unisex Salon",desc:"An in-game hair salon exclusive to the Ultimate Edition — fresh cuts, fresh starts."},
+ {img:"ult-rideout-customs-01.jpg",kick:"Mod Shop",title:"Rideout<br>Customs",desc:"A dedicated mod shop, open for business only with the Ultimate Edition — tune, wrap and rebuild."},
+ {img:"ult-one-eyed-willie-01.jpg",kick:"Mod Shop",title:"One-Eyed<br>Willie's",desc:"This Lake Leonida shop specializes in off-road modifications and hand-painted automotive artistry. Ultimate Edition only."},
+ {img:"ult-electric-fang-01.jpg",kick:"Tattoo Shop",title:"Electric<br>Fang",desc:"Exclusive ink for Jason and Lucia — neon-soaked designs from one of Leonida's boldest parlors."},
+ {img:"ult-stock-305-01.jpg",kick:"Store",title:"Stock<br>305",desc:"An exclusive clothing store stocked with Vice City threads you won't find anywhere else."},
+ {img:"ult-hawk-and-little-morgan-revolvers-01.jpg",kick:"Weapons",title:"Hawk &amp; Little<br>Morgan Revolvers",desc:"His-and-hers revolvers with classic Vice City stylings — palm-tree-etched grips and engraved detailing."},
+ {img:"ult-vice-city-style-01.jpg",kick:"Apparel",title:"Vice City<br>Style",desc:"Exclusive outfits, tattoos and looks for Jason and Lucia — dress for the sunniest, darkest city in America."},
+];
+const sc=document.getElementById("showcase");
+sc.innerHTML=PANELS.map((p,i)=>`
+  <section class="panel" data-label="${p.kick}">
+    <img class="bgmedia" src="${A}${p.img}" alt="${p.title.replace(/<br>/g,' ')}" loading="lazy">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    ${i===0?'':'<button class="backpill" data-top>← Back to top</button>'}
+    <span class="seclabel">Ultimate Edition</span>
+    <div class="content">
+      <span class="kicker">${p.kick}</span>
+      <h2 class="ptitle">${p.title}</h2>
+      <p class="pdesc">${p.desc}</p>
+    </div>
+  </section>`).join("");
+
+// menu
+const menu=document.getElementById("menu");
+document.getElementById("burger").onclick=()=>menu.classList.add("open");
+document.getElementById("menuClose").onclick=()=>menu.classList.remove("open");
+// back to top
+document.addEventListener("click",e=>{ if(e.target.matches("[data-top]")) document.getElementById("scroller").scrollTo({top:0,behavior:"smooth"}); });
+// trailers lightbox
+const lb=document.getElementById("lightbox"),lbF=document.getElementById("lbFrame");
+document.querySelectorAll(".tcard").forEach(c=>c.onclick=()=>{
+  lbF.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${c.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+  lb.classList.add("open");
+});
+function closeLb(){lb.classList.remove("open");lbF.innerHTML="";}
+document.getElementById("lbX").onclick=closeLb;
+lb.onclick=e=>{if(e.target===lb)closeLb();};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();menu.classList.remove("open");}});
+
+// progress dots + scroll tracking
+const scroller=document.getElementById("scroller");
+const panels=[...scroller.querySelectorAll(".panel")];
+const dots=document.getElementById("dots");
+dots.innerHTML=panels.map((_,i)=>`<i data-i="${i}"></i>`).join("");
+const dotEls=[...dots.children];
+dotEls.forEach(d=>d.onclick=()=>panels[+d.dataset.i].scrollIntoView({behavior:"smooth"}));
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const i=panels.indexOf(en.target);dotEls.forEach((d,k)=>d.classList.toggle("on",k===i));}});},{root:scroller,threshold:.6});
+panels.forEach(p=>io.observe(p));
+</script>
+</body>
+</html>
