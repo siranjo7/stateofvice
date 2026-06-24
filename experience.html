@@ -297,7 +297,7 @@ const PANELS=[
 ];
 document.getElementById("showcase").innerHTML=PANELS.map((p,i)=>`
   <section class="panel" data-label="${p.kick}">
-    <img class="bgmedia zoom" src="${A}${p.img}" alt="${p.title.replace(/<br>/g,' ')}" loading="lazy">
+    <img class="bgmedia zoom" src="${A}${p.img}" alt="${p.title.replace(/<br>/g,' ')}">
     <div class="scrim right"></div><div class="scrim bottom"></div>
     <span class="seclabel">Ultimate Edition</span>
     <div class="content"><span class="kicker">${p.kick}</span><h2 class="ptitle">${p.title}</h2><p class="pdesc">${p.desc}</p></div>
@@ -308,6 +308,7 @@ const backpill=document.getElementById("backpill"), dots=document.getElementById
 function showView(id){
   Object.values(views).forEach(v=>v.classList.remove("active"));
   views[id].classList.add("active"); views[id].scrollTop=0;
+  views[id].querySelectorAll("img.bgmedia").forEach(im=>{im.loading="eager"; if(!im.complete){const u=im.getAttribute("src"); im.setAttribute("src",u);}});
   backpill.classList.toggle("show", id!=="home");
   setupDots(views[id], id!=="home");
   window.scrollTo(0,0);
