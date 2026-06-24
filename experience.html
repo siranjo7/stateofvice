@@ -21,100 +21,135 @@
     --bg:#07080d;--text:#eef0f6;--muted:#9aa0b4;--faint:#5b6175;
     --pink:#ff2e63;--orange:#ff7a45;--cyan:#39d0ff;--gold:#ffd34d;--border:#1e2233;
     --grad:linear-gradient(90deg,var(--pink),var(--orange));
+    --violet1:#2a1656;--violet2:#0c0a1c;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{background:#04050a;color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;}
   a{color:inherit;text-decoration:none;}
   img,video{display:block;}
   ::selection{background:rgba(255,46,99,.35);}
 
-  /* scroll-snap scroller */
-  .scroller{height:100vh;height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
-  .panel{position:relative;height:100vh;height:100dvh;scroll-snap-align:start;overflow:hidden;display:flex;}
-  .bgmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;animation:slowzoom 22s ease-in-out infinite alternate;}
-  @keyframes slowzoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
-  .scrim{position:absolute;inset:0;z-index:1;}
-  .scrim.right{background:linear-gradient(90deg,rgba(7,8,13,.15) 0%,rgba(7,8,13,.05) 35%,rgba(7,8,13,.78) 72%,rgba(7,8,13,.96) 100%);}
-  .scrim.bottom{background:linear-gradient(180deg,rgba(7,8,13,.55) 0%,transparent 30%,transparent 55%,rgba(7,8,13,.95) 100%);}
-  .scrim.center{background:radial-gradient(120% 90% at 50% 45%,transparent 38%,rgba(7,8,13,.72) 100%);}
-
   /* top bar */
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,46px);pointer-events:none;}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,46px);pointer-events:none;}
   .topbar a,.topbar button{pointer-events:auto;}
   .wm{display:flex;flex-direction:column;line-height:.8;}
-  .wm small{font-size:9px;letter-spacing:.42em;color:#cfd3e0;font-weight:700;margin-bottom:3px;text-shadow:0 1px 8px rgba(0,0,0,.6);}
-  .wm b{font-family:'Anton',sans-serif;font-size:30px;letter-spacing:.02em;font-weight:400;text-shadow:0 2px 14px rgba(0,0,0,.6);}
+  .wm small{font-size:9px;letter-spacing:.42em;color:#cfd3e0;font-weight:700;margin-bottom:3px;text-shadow:0 1px 8px rgba(0,0,0,.7);}
+  .wm b{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.02em;font-weight:400;text-shadow:0 2px 14px rgba(0,0,0,.7);}
   .wm .vi{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .burger{width:50px;height:50px;border-radius:50%;background:rgba(17,20,31,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .burger{width:48px;height:48px;border-radius:50%;background:rgba(17,20,31,.5);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
   .burger:hover{border-color:var(--pink);background:rgba(255,46,99,.18);}
 
-  /* hero content */
-  .hero-wrap{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(70px,12vh,120px);text-align:center;}
-  .hero-logo{font-family:'Anton',sans-serif;font-size:clamp(70px,16vw,200px);line-height:.9;letter-spacing:.01em;text-shadow:0 8px 40px rgba(0,0,0,.5);}
-  .hero-logo .vi{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .hero-sub{margin-top:14px;font-size:clamp(13px,1.6vw,17px);letter-spacing:.34em;text-transform:uppercase;color:#cfd3e0;font-weight:600;}
-  .corner{position:absolute;z-index:3;bottom:26px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cfd3e0;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.7);}
-  .corner.l{left:clamp(18px,4vw,46px);}
-  .corner.r{right:clamp(18px,4vw,46px);display:flex;gap:14px;align-items:center;}
-  .corner .pill{padding:7px 13px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(17,20,31,.4);}
-  .scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:5px;color:#cfd3e0;}
+  /* views */
+  .view{display:none;height:100vh;height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+  .view.active{display:block;}
+  .panel{position:relative;height:100vh;height:100dvh;scroll-snap-align:start;overflow:hidden;display:flex;}
+  .bgmedia{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+  .bgmedia.zoom{animation:slowzoom 22s ease-in-out infinite alternate;}
+  @keyframes slowzoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+  .scrim{position:absolute;inset:0;z-index:1;}
+  .scrim.right{background:linear-gradient(90deg,rgba(7,8,13,.12) 0%,rgba(7,8,13,.04) 34%,rgba(7,8,13,.74) 70%,rgba(7,8,13,.96) 100%);}
+  .scrim.bottom{background:linear-gradient(180deg,rgba(7,8,13,.5) 0%,transparent 28%,transparent 55%,rgba(7,8,13,.95) 100%);}
+  .scrim.center{background:radial-gradient(120% 90% at 50% 45%,transparent 36%,rgba(7,8,13,.7) 100%);}
+
+  /* HERO (cover art) */
+  .hero{background:radial-gradient(90% 90% at 50% 35%,#181030,#04050a 75%);align-items:center;justify-content:center;}
+  .hero .cover{position:relative;z-index:2;max-width:min(1180px,92vw);max-height:84vh;width:auto;height:auto;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.6);}
+  .hero .corner{position:absolute;z-index:3;bottom:26px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cfd3e0;font-weight:700;}
+  .hero .corner.l{left:clamp(18px,4vw,46px);}
+  .hero .corner.r{right:clamp(18px,4vw,46px);display:flex;gap:12px;}
+  .hero .corner .pill{padding:7px 13px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(17,20,31,.4);}
+  .scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:5px;color:#cfd3e0;}
   .scrollcue span:first-child{font-size:10px;letter-spacing:.3em;font-weight:600;}
   .scrollcue span:last-child{font-size:18px;animation:cue 1.6s ease-in-out infinite;}
   @keyframes cue{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(7px);opacity:1}}
 
-  /* showcase content (right card) */
-  .content{position:relative;z-index:2;margin-left:auto;align-self:center;width:min(46%,560px);padding:0 clamp(28px,5vw,72px) 0 0;}
-  .content.left{margin-left:clamp(28px,6vw,90px);margin-right:auto;align-self:flex-end;padding-bottom:clamp(60px,10vh,120px);width:min(60%,640px);}
-  .content.story{margin:auto;text-align:center;width:min(820px,86%);padding:0 20px;}
-  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
-  .kicker.gold{color:var(--gold);}
-  .ptitle{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(40px,6.4vw,96px);line-height:.92;letter-spacing:.005em;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.55);}
-  .pdesc{margin-top:20px;font-size:clamp(15px,1.25vw,18px);line-height:1.7;color:#d3d7e4;max-width:46ch;}
-  .content.left .pdesc,.content.story .pdesc{max-width:none;}
-  .lrn{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:13px 24px;border-radius:999px;background:var(--grad);color:#fff;font-weight:700;font-size:15px;box-shadow:0 10px 30px rgba(255,46,99,.34);transition:.2s;}
-  .lrn:hover{filter:brightness(1.08);transform:translateY(-2px);}
-  .backpill{position:absolute;top:clamp(76px,11vh,104px);left:clamp(18px,4vw,46px);z-index:5;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(17,20,31,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
-  .backpill:hover{border-color:var(--cyan);}
-  .seclabel{position:absolute;top:clamp(76px,11vh,104px);right:clamp(18px,4vw,46px);z-index:5;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  /* PROMO cards (homepage) */
+  .promo{align-items:center;justify-content:center;}
+  .promo.ult{background:linear-gradient(120deg,#ff2e63 0%,#b06ef7 55%,#7a3df5 100%);}
+  .promo.vint{background:#07080d;}
+  .promocard{position:relative;z-index:2;display:flex;align-items:center;gap:clamp(24px,4vw,56px);width:min(1100px,92vw);}
+  .promocard img{width:min(48%,520px);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.45);}
+  .promocard .ptext{flex:1;}
+  .promo.vint .promocard{flex-direction:row-reverse;}
+  .promo.vint{padding:0;}
+  .promo.vint .full{position:absolute;inset:0;z-index:0;}
+  .promo.vint .full img{width:100%;height:100%;object-fit:cover;}
 
-  /* trailers panel */
-  .trailers{flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(80% 80% at 50% 30%,#1a1230,#07080d 70%);}
-  .trailers .ptitle{margin-bottom:8px;}
-  .tcards{position:relative;z-index:2;display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin-top:34px;padding:0 20px;}
-  .tcard{width:min(360px,40vw);cursor:pointer;text-align:left;transition:transform .25s;}
-  .tcard:hover{transform:translateY(-5px);}
-  .tcard .thumb{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;background:#11141f;}
+  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:14px;opacity:.9;}
+  .kicker.gold{color:var(--gold);opacity:1;}
+  .kicker.cyan{color:var(--cyan);}
+  .ptitle{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(38px,5.6vw,84px);line-height:.92;letter-spacing:.005em;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.45);}
+  .pdesc{margin-top:18px;font-size:clamp(15px,1.2vw,18px);line-height:1.7;color:#eef0f6;max-width:42ch;}
+  .promo.vint .pdesc{color:#e6e8f2;}
+  .lrn{display:inline-flex;align-items:center;gap:9px;margin-top:24px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:none;transition:.2s;}
+  .lrn.light{background:#fff;color:#1a1030;}
+  .lrn.green{background:#b8f24a;color:#10210a;}
+  .lrn:hover{filter:brightness(1.05);transform:translateY(-2px);}
+
+  /* SHOWCASE content (right) */
+  .content{position:relative;z-index:2;margin-left:auto;align-self:center;width:min(46%,560px);padding:0 clamp(28px,5vw,72px) 0 0;}
+  .content.center{margin:auto;text-align:center;width:min(900px,88%);padding:0 20px;}
+  .content .kicker{color:var(--cyan);}
+  .content .pdesc{color:#d3d7e4;max-width:46ch;}
+  .backpill{position:fixed;top:clamp(74px,11vh,100px);left:clamp(18px,4vw,46px);z-index:50;display:none;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(17,20,31,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
+  .backpill:hover{border-color:var(--cyan);}
+  .backpill.show{display:inline-flex;}
+  .seclabel{position:absolute;top:clamp(74px,11vh,100px);right:clamp(18px,4vw,46px);z-index:5;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+
+  /* VINTAGE full page */
+  .vintpage .content{align-self:flex-end;margin-left:clamp(28px,6vw,90px);margin-right:auto;padding-bottom:clamp(70px,11vh,130px);width:min(60%,640px);}
+
+  /* progress dots */
+  .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:9px;}
+  .dots.show{display:flex;}
+  .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);transition:.3s;cursor:pointer;display:block;}
+  .dots i.on{background:var(--pink);transform:scale(1.35);}
+
+  /* SLIDE-OVER (menu + trailers) */
+  .slideover{position:fixed;inset:0;z-index:85;display:flex;transform:translateX(100%);transition:transform .45s cubic-bezier(.5,0,.2,1);}
+  .slideover.open{transform:translateX(0);}
+  .so-left{flex:1;background:radial-gradient(80% 80% at 50% 45%,var(--violet1),var(--violet2));display:flex;align-items:center;justify-content:center;position:relative;}
+  .so-left .vilogo{width:clamp(140px,18vw,260px);height:auto;}
+  .so-left .botbar{position:absolute;left:clamp(20px,4vw,44px);right:0;bottom:26px;display:flex;align-items:center;gap:30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#aab; font-weight:700;}
+  .so-left .botbar .badge{opacity:.85;}
+  .so-right{width:min(46%,560px);background:#0a0b14;padding:clamp(70px,10vh,110px) clamp(28px,4vw,56px) 40px;display:flex;flex-direction:column;}
+  .so-head{display:flex;align-items:center;gap:12px;color:#cdd2e0;font-size:14px;font-weight:600;margin-bottom:36px;}
+  .so-head .bk{cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+  .so-head .sep{color:var(--faint);}
+  .so-close{position:absolute;top:26px;right:30px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:18px;cursor:pointer;z-index:5;}
+  .so-links{display:flex;flex-direction:column;}
+  .so-links a{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,.08);font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;color:#e7e9f2;transition:.2s;}
+  .so-links a:hover{color:#fff;padding-left:12px;}
+  .so-links a .chev{font-family:'Inter';font-size:18px;color:var(--muted);}
+  .so-links a:hover .chev{color:var(--cyan);}
+
+  /* trailer cards in slideover */
+  .tcards{display:flex;flex-direction:column;gap:18px;}
+  .tcard{cursor:pointer;transition:transform .2s;}
+  .tcard:hover{transform:translateY(-3px);}
+  .tcard .thumb{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;}
   .tcard .thumb img{width:100%;height:100%;object-fit:cover;}
   .tcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-  .tcard .play span{width:62px;height:62px;border-radius:50%;background:rgba(7,8,13,.6);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;backdrop-filter:blur(4px);}
-  .tcard h4{margin:12px 2px 2px;font-size:16px;}
-  .tcard p{margin:0 2px;font-size:13px;color:var(--muted);}
-
-  /* menu overlay */
-  .menu{position:fixed;inset:0;z-index:80;background:rgba(7,8,13,.96);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .3s;}
-  .menu.open{opacity:1;pointer-events:auto;}
-  .menu a{font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,60px);text-transform:uppercase;color:var(--muted);transition:.2s;line-height:1.15;}
-  .menu a:hover{color:var(--text);}
-  .menu .close{position:absolute;top:24px;right:30px;font-size:30px;color:#fff;cursor:pointer;background:none;border:none;}
-  .menu small{margin-top:26px;color:var(--faint);letter-spacing:.2em;font-size:12px;text-transform:uppercase;}
+  .tcard .play span{width:54px;height:54px;border-radius:50%;background:rgba(7,8,13,.6);border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;}
+  .tcard h4{margin:10px 2px 2px;font-size:15px;}
+  .tcard p{margin:0 2px;font-size:12px;color:var(--muted);}
 
   /* lightbox */
-  .lightbox{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:5vw;}
+  .lightbox{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;padding:5vw;}
   .lightbox.open{display:flex;}
   .lightbox .frame{width:min(1100px,100%);aspect-ratio:16/9;border-radius:12px;overflow:hidden;}
   .lightbox iframe{width:100%;height:100%;border:0;}
   .lightbox .x{position:absolute;top:22px;right:30px;font-size:30px;color:#fff;cursor:pointer;background:none;border:none;}
 
-  /* progress dots */
-  .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:9px;}
-  .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);transition:.3s;cursor:pointer;display:block;}
-  .dots i.on{background:var(--pink);transform:scale(1.35);}
-  @media(max-width:820px){
-    .content,.content.left{width:auto;margin:0 18px;align-self:flex-end;padding:0 0 90px;}
+  @media(max-width:860px){
+    .promocard{flex-direction:column!important;text-align:center;}
+    .promocard img{width:min(86%,440px);}
+    .content,.vintpage .content{width:auto;margin:0 18px;align-self:flex-end;padding:0 0 90px;}
     .scrim.right{background:linear-gradient(180deg,rgba(7,8,13,.2),transparent 30%,rgba(7,8,13,.95));}
-    .dots{display:none;}
-    .corner.r .pill:nth-child(n+2){display:none;}
+    .dots.show{display:none;}
+    .so-right{width:70%;}
+    .so-left .vilogo{width:120px;}
   }
 </style>
 </head>
@@ -125,95 +160,120 @@
   <button class="burger" id="burger" aria-label="Menu">☰</button>
 </div>
 
-<nav class="menu" id="menu">
-  <button class="close" id="menuClose" aria-label="Close">✕</button>
-  <a href="index.html">Home</a>
-  <a href="articles/gta-6-map-leonida-explained.html">Map of Leonida</a>
-  <a href="articles/gta-6-characters-confirmed.html">Characters</a>
-  <a href="articles/gta-6-editions-preorder-guide.html">Pre-orders &amp; Editions</a>
-  <a href="articles/gta-6-price-what-to-budget.html">Pricing</a>
-  <a href="wallpapers.html">Wallpapers</a>
-  <small>Pre-order on June 25 · Launches Nov 19, 2026</small>
-</nav>
-
+<button class="backpill" id="backpill">← Back</button>
 <div class="dots" id="dots"></div>
 
-<main class="scroller" id="scroller">
-
-  <!-- HERO -->
-  <section class="panel" data-label="Home">
-    <video class="bgmedia" autoplay muted loop playsinline poster="assets/press/keyart.jpg" style="animation:none;">
-      <source src="assets/press/clips/hero-couple.mp4" type="video/mp4">
-      <source src="assets/press/clips/hero-loop.mp4" type="video/mp4">
+<!-- ============ HOME VIEW ============ -->
+<main class="view active" id="home">
+  <!-- HERO: cover art -->
+  <section class="panel hero">
+    <video class="bgmedia" autoplay muted loop playsinline poster="assets/press/cover-art.jpg" style="object-fit:contain;background:#04050a;">
+      <source src="assets/press/clips/cover-art.mp4" type="video/mp4">
     </video>
-    <div class="scrim center"></div><div class="scrim bottom"></div>
-    <div class="hero-wrap">
-      <div class="hero-logo"><span class="vi">VI</span>CE CITY</div>
-      <div class="hero-sub">Grand Theft Auto VI · The State of Leonida</div>
-    </div>
     <div class="corner l">Pre-order on June 25</div>
     <div class="corner r"><span class="pill">PS5</span><span class="pill">Xbox Series X|S</span></div>
     <div class="scrollcue"><span>SCROLL</span><span>↓</span></div>
   </section>
 
-  <!-- STORY -->
-  <section class="panel" data-label="Vice City">
-    <img class="bgmedia" src="assets/press/keyart-logo.jpg" alt="Vice City key art" loading="lazy">
-    <div class="scrim center"></div><div class="scrim bottom"></div>
-    <div class="content story">
-      <div class="kicker">Vice City, USA.</div>
-      <h2 class="ptitle">The Darkest Side<br>of the Sunniest Place</h2>
-      <p class="pdesc">Jason and Lucia have always known the deck is stacked against them. When an easy score goes wrong, they're thrown into a criminal conspiracy stretching across the state of Leonida — forced to rely on each other more than ever to make it out alive.</p>
-    </div>
-  </section>
-
-  <!-- TRAILERS -->
-  <section class="panel trailers" data-label="Trailers">
-    <div class="content story" style="position:relative;z-index:2;">
-      <div class="kicker">Watch</div>
-      <h2 class="ptitle">The Trailers</h2>
-      <div class="tcards">
-        <div class="tcard" data-yt="VQRLujxTm3c">
-          <div class="thumb"><img src="assets/press/keyart.jpg" alt="GTA VI Trailer 2"><div class="play"><span>▶</span></div></div>
-          <h4>Grand Theft Auto VI — Trailer 2</h4><p>“Jason &amp; Lucia” · May 2025</p>
-        </div>
-        <div class="tcard" data-yt="QdBZY2fkU-0">
-          <div class="thumb"><img src="assets/press/keyart-logo.jpg" alt="GTA VI Trailer 1"><div class="play"><span>▶</span></div></div>
-          <h4>Grand Theft Auto VI — Trailer 1</h4><p>“Vice City” · Dec 2023</p>
-        </div>
+  <!-- ULTIMATE EDITION promo (pink gradient) -->
+  <section class="panel promo ult">
+    <div class="promocard">
+      <img src="assets/press/cover-art.jpg" alt="Grand Theft Auto VI Ultimate Edition">
+      <div class="ptext">
+        <h2 class="ptitle">Ultimate<br>Edition</h2>
+        <p class="pdesc">An exclusive collection of premium vehicles, weapons, apparel and action, threaded across all aspects of Jason and Lucia's story.</p>
+        <button class="lrn light" data-view="ultimate">Learn more →</button>
       </div>
     </div>
   </section>
 
-  <!-- VINTAGE VICE CITY PACK -->
-  <section class="panel" data-label="Pre-order Bonus">
-    <img class="bgmedia" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-01.jpg" alt="Vintage Vice City Pack" loading="lazy">
+  <!-- VINTAGE VICE CITY PACK promo (full-bleed) -->
+  <section class="panel promo vint">
+    <div class="full"><img src="assets/press/stateofvice_rockstar_assets_ALL/vvc-01.jpg" alt="Vintage Vice City Pack"></div>
     <div class="scrim right"></div><div class="scrim bottom"></div>
-    <div class="content left">
-      <span class="kicker gold">Pre-order Bonus</span>
-      <h2 class="ptitle">Vintage<br>Vice City Pack</h2>
-      <p class="pdesc">Pre-order to get unique benefits that flash back to when the neon burned brightest — the two-tone '55 Vapid Stanier, a Shore Court Garage by Ocean Beach, retro looks for Jason and Lucia, and a Tommy Vercetti-style weapon pattern. Free with all digital purchases before Nov 20, 2026.</p>
-      <a class="lrn" href="articles/gta-6-editions-preorder-guide.html">Learn more →</a>
+    <div class="promocard" style="position:relative;z-index:2;">
+      <div class="ptext">
+        <span class="kicker gold">Pre-order Bonus</span>
+        <h2 class="ptitle">Vintage<br>Vice City Pack</h2>
+        <p class="pdesc">Pre-order to get unique benefits that flash back to when the neon burned brightest.</p>
+        <button class="lrn green" data-view="vintage">Learn more →</button>
+      </div>
+      <div style="width:min(40%,420px)"></div>
     </div>
   </section>
-
-  <!-- ULTIMATE EDITION SHOWCASE (panels injected by JS) -->
-  <div id="showcase"></div>
-
-  <!-- OUTRO CTA -->
-  <section class="panel" data-label="Pre-order">
-    <img class="bgmedia" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-02.jpg" alt="GTA VI" loading="lazy">
-    <div class="scrim center"></div><div class="scrim bottom"></div>
-    <div class="content story">
-      <div class="kicker">November 19, 2026</div>
-      <h2 class="ptitle">Be Ready for Leonida</h2>
-      <p class="pdesc">Pre-orders open June 25 on PS5 and Xbox Series X|S. Get the honest breakdown — every claim CONFIRMED or RUMOR — at State of Vice.</p>
-      <a class="lrn" href="articles/gta-6-editions-preorder-guide.html">Pre-order guide →</a>
-      <p style="margin-top:30px;font-size:12px;color:var(--faint);max-width:none;">State of Vice is an unofficial fan site. Not affiliated with Rockstar Games or Take-Two Interactive. Official art © Rockstar Games, used editorially.</p>
-    </div>
-  </section>
-
 </main>
+
+<!-- ============ ULTIMATE EDITION VIEW ============ -->
+<main class="view" id="ultimate"><div id="showcase"></div></main>
+
+<!-- ============ VINTAGE VIEW ============ -->
+<main class="view" id="vintage">
+  <section class="panel vintpage" data-label="Vintage">
+    <img class="bgmedia zoom" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-01.jpg" alt="Vintage Vice City Pack">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    <span class="seclabel">Pre-order Bonus</span>
+    <div class="content">
+      <span class="kicker gold">Vintage Vice City Pack</span>
+      <h2 class="ptitle">Welcome Back<br>to Vice City</h2>
+      <p class="pdesc">The two-tone '55 Vapid Stanier, a Shore Court Garage by Ocean Beach, retro looks for Jason and Lucia, and a Tommy Vercetti-style weapon pattern. Free with all digital purchases before Nov 20, 2026.</p>
+      <a class="lrn light" href="articles/gta-6-editions-preorder-guide.html">Full details →</a>
+    </div>
+  </section>
+  <section class="panel vintpage">
+    <img class="bgmedia zoom" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-vapid-stanier-01.jpg" alt="'55 Vapid Stanier">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    <div class="content"><span class="kicker gold">Vehicle</span><h2 class="ptitle">'55 Vapid<br>Stanier</h2><p class="pdesc">A timeless two-tone sedan, parked at your own Shore Court Garage steps from Ocean Beach.</p></div>
+  </section>
+  <section class="panel vintpage">
+    <img class="bgmedia zoom" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-exclusive-looks-01.jpg" alt="Exclusive looks">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    <div class="content"><span class="kicker gold">Apparel</span><h2 class="ptitle">Exclusive<br>Looks</h2><p class="pdesc">Jason in a vintage pastel linen suit; Lucia in a red sequin mini dress and curls — dressed for the decade of decadence.</p></div>
+  </section>
+  <section class="panel vintpage">
+    <img class="bgmedia zoom" src="assets/press/stateofvice_rockstar_assets_ALL/vvc-weapon-pattern-01.jpg" alt="Weapon pattern">
+    <div class="scrim right"></div><div class="scrim bottom"></div>
+    <div class="content"><span class="kicker gold">Weapon Pattern</span><h2 class="ptitle">Tommy's<br>Tropics</h2><p class="pdesc">An exclusive palm-tree weapon pattern that channels the original Vice City kingpin, Tommy Vercetti.</p></div>
+  </section>
+</main>
+
+<!-- ============ MENU SLIDE-OVER ============ -->
+<nav class="slideover" id="menu">
+  <button class="so-close" data-close>✕</button>
+  <div class="so-left">
+    <svg class="vilogo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 13 L19 13 L25.5 41 L32 13 L45 13 L32 55 L19 55 Z" fill="#fff"/><rect x="48" y="13" width="11" height="42" fill="#fff"/></svg>
+    <div class="botbar"><span class="badge">Pre-order on June 25</span><span class="badge">PS5 · Xbox Series X|S</span></div>
+  </div>
+  <div class="so-right">
+    <div class="so-head"><span class="bk" data-close>← Back</span><span class="sep">|</span><span>Menu</span></div>
+    <div class="so-links">
+      <a data-view="home" data-close>Home <span class="chev">›</span></a>
+      <a href="articles/gta-6-map-leonida-explained.html">Map of Leonida <span class="chev">›</span></a>
+      <a href="articles/gta-6-characters-confirmed.html">Characters <span class="chev">›</span></a>
+      <a data-view="ultimate" data-close>Ultimate Edition <span class="chev">›</span></a>
+      <a data-view="vintage" data-close>Vintage Pack <span class="chev">›</span></a>
+      <a href="articles/gta-6-editions-preorder-guide.html">Pre-orders &amp; Editions <span class="chev">›</span></a>
+      <a href="articles/gta-6-price-what-to-budget.html">Pricing <span class="chev">›</span></a>
+      <a href="wallpapers.html">Wallpapers <span class="chev">›</span></a>
+      <a data-trailers>Trailers <span class="chev">›</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ TRAILERS SLIDE-OVER ============ -->
+<nav class="slideover" id="trailers">
+  <button class="so-close" data-close>✕</button>
+  <div class="so-left">
+    <svg class="vilogo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M6 13 L19 13 L25.5 41 L32 13 L45 13 L32 55 L19 55 Z" fill="#fff"/><rect x="48" y="13" width="11" height="42" fill="#fff"/></svg>
+    <div class="botbar"><span class="badge">Pre-order on June 25</span><span class="badge">PS5 · Xbox Series X|S</span></div>
+  </div>
+  <div class="so-right">
+    <div class="so-head"><span class="bk" data-close>← Back</span><span class="sep">|</span><span>Trailers</span></div>
+    <div class="tcards">
+      <div class="tcard" data-yt="VQRLujxTm3c"><div class="thumb"><img src="assets/press/keyart.jpg" alt="Trailer 2"><div class="play"><span>▶</span></div></div><h4>Grand Theft Auto VI — Trailer 2</h4><p>“Jason &amp; Lucia” · May 2025</p></div>
+      <div class="tcard" data-yt="QdBZY2fkU-0"><div class="thumb"><img src="assets/press/keyart-logo.jpg" alt="Trailer 1"><div class="play"><span>▶</span></div></div><h4>Grand Theft Auto VI — Trailer 1</h4><p>“Vice City” · Dec 2023</p></div>
+    </div>
+  </div>
+</nav>
 
 <!-- lightbox -->
 <div class="lightbox" id="lightbox"><button class="x" id="lbX">✕</button><div class="frame" id="lbFrame"></div></div>
@@ -235,46 +295,53 @@ const PANELS=[
  {img:"ult-hawk-and-little-morgan-revolvers-01.jpg",kick:"Weapons",title:"Hawk &amp; Little<br>Morgan Revolvers",desc:"His-and-hers revolvers with classic Vice City stylings — palm-tree-etched grips and engraved detailing."},
  {img:"ult-vice-city-style-01.jpg",kick:"Apparel",title:"Vice City<br>Style",desc:"Exclusive outfits, tattoos and looks for Jason and Lucia — dress for the sunniest, darkest city in America."},
 ];
-const sc=document.getElementById("showcase");
-sc.innerHTML=PANELS.map((p,i)=>`
+document.getElementById("showcase").innerHTML=PANELS.map((p,i)=>`
   <section class="panel" data-label="${p.kick}">
-    <img class="bgmedia" src="${A}${p.img}" alt="${p.title.replace(/<br>/g,' ')}" loading="lazy">
+    <img class="bgmedia zoom" src="${A}${p.img}" alt="${p.title.replace(/<br>/g,' ')}" loading="lazy">
     <div class="scrim right"></div><div class="scrim bottom"></div>
-    ${i===0?'':'<button class="backpill" data-top>← Back to top</button>'}
     <span class="seclabel">Ultimate Edition</span>
-    <div class="content">
-      <span class="kicker">${p.kick}</span>
-      <h2 class="ptitle">${p.title}</h2>
-      <p class="pdesc">${p.desc}</p>
-    </div>
+    <div class="content"><span class="kicker">${p.kick}</span><h2 class="ptitle">${p.title}</h2><p class="pdesc">${p.desc}</p></div>
   </section>`).join("");
 
-// menu
-const menu=document.getElementById("menu");
-document.getElementById("burger").onclick=()=>menu.classList.add("open");
-document.getElementById("menuClose").onclick=()=>menu.classList.remove("open");
-// back to top
-document.addEventListener("click",e=>{ if(e.target.matches("[data-top]")) document.getElementById("scroller").scrollTo({top:0,behavior:"smooth"}); });
-// trailers lightbox
-const lb=document.getElementById("lightbox"),lbF=document.getElementById("lbFrame");
-document.querySelectorAll(".tcard").forEach(c=>c.onclick=()=>{
-  lbF.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${c.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
-  lb.classList.add("open");
-});
-function closeLb(){lb.classList.remove("open");lbF.innerHTML="";}
-document.getElementById("lbX").onclick=closeLb;
-lb.onclick=e=>{if(e.target===lb)closeLb();};
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();menu.classList.remove("open");}});
+const views={home:document.getElementById("home"),ultimate:document.getElementById("ultimate"),vintage:document.getElementById("vintage")};
+const backpill=document.getElementById("backpill"), dots=document.getElementById("dots");
+function showView(id){
+  Object.values(views).forEach(v=>v.classList.remove("active"));
+  views[id].classList.add("active"); views[id].scrollTop=0;
+  backpill.classList.toggle("show", id!=="home");
+  setupDots(views[id], id!=="home");
+  window.scrollTo(0,0);
+}
+document.getElementById("backpill").onclick=()=>showView("home");
 
-// progress dots + scroll tracking
-const scroller=document.getElementById("scroller");
-const panels=[...scroller.querySelectorAll(".panel")];
-const dots=document.getElementById("dots");
-dots.innerHTML=panels.map((_,i)=>`<i data-i="${i}"></i>`).join("");
-const dotEls=[...dots.children];
-dotEls.forEach(d=>d.onclick=()=>panels[+d.dataset.i].scrollIntoView({behavior:"smooth"}));
-const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const i=panels.indexOf(en.target);dotEls.forEach((d,k)=>d.classList.toggle("on",k===i));}});},{root:scroller,threshold:.6});
-panels.forEach(p=>io.observe(p));
+// menu / trailers slide-overs
+const menu=document.getElementById("menu"), trailers=document.getElementById("trailers");
+document.getElementById("burger").onclick=()=>menu.classList.add("open");
+function closeAll(){menu.classList.remove("open");trailers.classList.remove("open");}
+document.querySelectorAll("[data-close]").forEach(el=>el.addEventListener("click",e=>{e.stopPropagation();closeAll();}));
+document.querySelectorAll("[data-view]").forEach(el=>el.addEventListener("click",()=>{showView(el.dataset.view);closeAll();}));
+document.querySelectorAll("[data-trailers]").forEach(el=>el.addEventListener("click",()=>{menu.classList.remove("open");setTimeout(()=>trailers.classList.add("open"),120);}));
+
+// lightbox
+const lb=document.getElementById("lightbox"),lbF=document.getElementById("lbFrame");
+document.querySelectorAll(".tcard").forEach(c=>c.onclick=()=>{lbF.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${c.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;lb.classList.add("open");});
+function closeLb(){lb.classList.remove("open");lbF.innerHTML="";}
+document.getElementById("lbX").onclick=closeLb; lb.onclick=e=>{if(e.target===lb)closeLb();};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();closeAll();}});
+
+// dots per active view
+let io=null;
+function setupDots(view,show){
+  if(io){io.disconnect();io=null;}
+  const panels=[...view.querySelectorAll(".panel")];
+  if(!show||panels.length<2){dots.classList.remove("show");dots.innerHTML="";return;}
+  dots.classList.add("show");
+  dots.innerHTML=panels.map((_,i)=>`<i data-i="${i}"></i>`).join("");
+  const dotEls=[...dots.children];
+  dotEls.forEach(d=>d.onclick=()=>panels[+d.dataset.i].scrollIntoView({behavior:"smooth"}));
+  io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const i=panels.indexOf(en.target);dotEls.forEach((d,k)=>d.classList.toggle("on",k===i));}}),{root:view,threshold:.6});
+  panels.forEach(p=>io.observe(p));
+}
 </script>
 </body>
 </html>
