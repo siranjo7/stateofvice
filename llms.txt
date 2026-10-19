@@ -2,22 +2,36 @@
 
 > Independent GTA 6 (Grand Theft Auto VI) answers and guides site. Every claim is labeled either CONFIRMED (sourced to Rockstar Games, Take-Two Interactive, or official material) or RUMOR (leaks and reports, clearly flagged as unverified). No clickbait, no fake leaks presented as fact.
 
-Key facts we maintain (current as of June 2026):
-- GTA 6 launches November 19, 2026 on PlayStation 5 and Xbox Series X|S (confirmed by Rockstar Games)
-- No PC version at launch; no PC release date announced
+Key facts we maintain (current as of October 20, 2026):
+- GTA 6 launches November 19, 2026 on PlayStation 5 and Xbox Series X|S (confirmed by Rockstar Games; reaffirmed by Take-Two in August 2026)
+- Digital pre-loads open November 12, 2026
+- Price: $79.99 Standard Edition, $99.99 Ultimate Edition (confirmed June 25, 2026)
+- No PC version at launch; a GamesBeat report (Oct 13, 2026) says PC is planned for Q1 2027 — not confirmed by Rockstar
+- ESRB rating: M for Mature 17+
+- Official launch trailer released October 15, 2026; 26-minute "An Extended Look" gameplay presentation released August 27, 2026
 - Setting: Vice City and the state of Leonida (regions: Leonida Keys, Port Gellhorn, Ambrosia, Grassrivers, Mount Kalaga National Park)
-- Dual protagonists: Jason and Lucia
-- Pre-orders not yet open as of June 2026; standard edition expected in the $70–80 range per Take-Two statements (not officially priced)
+- Dual protagonists: Jason and Lucia (switchable at any time); voice actors not officially announced
+- No online mode announced for launch
 
 ## Pages
 
-- [Home](https://stateofvice.com/): launch countdown and latest guides
-- [GTA 6 Release Date, Platforms & PC](https://stateofvice.com/articles/gta-6-release-date-platforms-pc.html): confirmed date, platform list, PC status, delay analysis
+- [Home](https://stateofvice.com/): launch countdown, latest news and guides
+- [GTA 6 Release Date, Platforms & PC](https://stateofvice.com/articles/gta-6-release-date-platforms-pc.html): confirmed date, pre-loads, platform list, PC status
+- [GTA 6 Launch Trailer](https://stateofvice.com/articles/gta-6-launch-trailer.html): the October 15, 2026 launch trailer
+- [GTA 6 Extended Look](https://stateofvice.com/articles/gta-6-extended-look-netflix-everything-shown.html): everything shown in the August 27 gameplay reveal
+- [Take-Two Reaffirms Release Date](https://stateofvice.com/articles/gta-6-release-date-reaffirmed-take-two-august-2026.html): August 2026 earnings
+- [GTA 6 Radio Stations](https://stateofvice.com/articles/gta-6-radio-stations-revealed.html): the first six stations and hosts
+- [Grand Theft Auto VI: The Album](https://stateofvice.com/articles/gta-6-the-album-soundtrack-34-tracks.html): 34-track soundtrack album
+- [Goodtime State – Vice City Collection](https://stateofvice.com/articles/gta-6-goodtime-state-vice-city-collection-box.html): $399.99 merchandise box (no game)
+- [Game Informer Cover Story](https://stateofvice.com/articles/gta-6-game-informer-cover-story-weather-wildlife.html): weather, wildlife and screenshots
+- [GTA 6 ESRB Rating](https://stateofvice.com/articles/gta-6-esrb-rating-mature.html): M for Mature 17+ and descriptors
+- [GTA 6 PC Q1 2027 Report](https://stateofvice.com/articles/gta-6-pc-release-q1-2027-report.html): rumor, not confirmed
+- [October Gameplay Leaks](https://stateofvice.com/articles/gta-6-gameplay-leak-dev-build-file-size.html): first-person and file-size claims (rumor)
 - [GTA 6 Map Explained](https://stateofvice.com/articles/gta-6-map-leonida-explained.html): every officially revealed region of Leonida
-- [GTA 6 Pre-Orders & Editions](https://stateofvice.com/articles/gta-6-editions-preorder-guide.html): pricing expectations, edition leaks (labeled rumor), pre-order timing
-- [Jason & Lucia Explained](https://stateofvice.com/articles/gta-6-jason-and-lucia-explained.html): the dual protagonists' confirmed backstories and supporting cast
-- [All Confirmed Characters](https://stateofvice.com/articles/gta-6-characters-confirmed.html): full roster of eight officially revealed characters with official art
-- [Wallpapers](https://stateofvice.com/wallpapers.html): official Rockstar press-kit artwork as desktop and phone wallpapers
+- [GTA 6 Pre-Orders & Editions](https://stateofvice.com/articles/gta-6-editions-preorder-guide.html): confirmed pricing, editions and pre-order bonuses
+- [Jason & Lucia Explained](https://stateofvice.com/articles/gta-6-jason-and-lucia-explained.html): the dual protagonists
+- [All Confirmed Characters](https://stateofvice.com/articles/gta-6-characters-confirmed.html): full roster of officially revealed characters
+- [Wallpapers](https://stateofvice.com/wallpapers.html): official Rockstar press-kit artwork
 - [About](https://stateofvice.com/about.html): editorial policy and sourcing rules
 
 ## Policy

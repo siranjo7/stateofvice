@@ -105,7 +105,15 @@
         <div><span style="font-size:12px; font-weight:700; letter-spacing:.3em; color:#ff7a45;">WATCH</span><h2 style="margin:8px 0 0; font-family:'Anton',sans-serif; font-size:clamp(34px,5vw,58px); line-height:1;">OFFICIAL TRAILERS</h2></div>
         <a class="ghost" href="https://www.youtube.com/@StateofVice" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:11px; border:1px solid #1e2233; color:#eef0f6; font-weight:600; font-size:14px;">▶ Subscribe on YouTube</a>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr)); gap:22px;">
+        <div style="border:1px solid #1e2233; border-radius:16px; overflow:hidden; background:#11141f;">
+          <div style="position:relative; aspect-ratio:16/9;"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/rz1B4B2yBZY" title="GTA VI Launch Trailer" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe></div>
+          <div style="padding:18px 20px;"><h3 style="margin:0 0 5px; font-size:17px; font-weight:700;">Launch Trailer</h3><p style="margin:0; font-size:13px; color:#8e94a8;">Official launch trailer · Oct 15, 2026 · <a href="articles/gta-6-launch-trailer.html" style="color:#ff7a45;">What it shows →</a></p></div>
+        </div>
+        <div style="border:1px solid #1e2233; border-radius:16px; overflow:hidden; background:#11141f;">
+          <div style="position:relative; aspect-ratio:16/9;"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/tJbzMqJGH4k" title="Grand Theft Auto VI: An Extended Look" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe></div>
+          <div style="padding:18px 20px;"><h3 style="margin:0 0 5px; font-size:17px; font-weight:700;">An Extended Look</h3><p style="margin:0; font-size:13px; color:#8e94a8;">26 minutes of gameplay · Aug 27, 2026 · <a href="articles/gta-6-extended-look-netflix-everything-shown.html" style="color:#ff7a45;">Breakdown →</a></p></div>
+        </div>
         <div style="border:1px solid #1e2233; border-radius:16px; overflow:hidden; background:#11141f;">
           <div style="position:relative; aspect-ratio:16/9;"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/QdBZY2fkU-0" title="GTA VI Trailer 1" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe></div>
           <div style="padding:18px 20px;"><h3 style="margin:0 0 5px; font-size:17px; font-weight:700;">Trailer 1 — "Vice City"</h3><p style="margin:0; font-size:13px; color:#8e94a8;">First official look · Dec 2023</p></div>
@@ -144,6 +152,13 @@
         <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,8,13,.15) 35%, rgba(7,8,13,.92)); pointer-events:none;"></div>
         <div style="position:absolute; left:24px; right:24px; bottom:24px;"><span style="font-size:11px; font-weight:700; letter-spacing:.28em; color:#ff7a45;">DOWNLOADS</span><h3 style="margin:8px 0 0; font-family:'Anton',sans-serif; font-size:clamp(30px,4.5vw,54px); line-height:.96;">MEDIA &amp; ARTWORK</h3><p style="margin:10px 0 0; font-size:14px; color:#8e94a8;">Free phone &amp; desktop wallpapers →</p></div>
       </a>
+    </div>
+  </section>
+
+  <section id="news" style="padding:clamp(56px,9vw,110px) clamp(20px,6vw,80px); background:#07080d; border-top:1px solid #1e2233;">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div style="margin-bottom:40px;"><span style="font-size:12px; font-weight:700; letter-spacing:.3em; color:#ff2e63;">THE ROAD TO NOVEMBER 19</span><h2 style="margin:8px 0 0; font-family:'Anton',sans-serif; font-size:clamp(36px,5.5vw,64px); line-height:1;">LATEST NEWS</h2></div>
+      <div id="news-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr)); gap:18px;"></div>
     </div>
   </section>
 
@@ -218,7 +233,21 @@
     {kicker:'CHARACTERS',tag:'CONFIRMED',title:'Every confirmed character',blurb:'Jason, Lucia and the full supporting roster, with rumors flagged.',href:'articles/gta-6-characters-confirmed.html'}
   ];
   function chip(tag){var b=tag==='CONFIRMED'?'rgba(57,208,255,.16);color:#39d0ff;border:1px solid rgba(57,208,255,.4)':tag==='RUMOR'?'rgba(255,211,77,.14);color:#ffd34d;border:1px solid rgba(255,211,77,.4)':'rgba(139,92,246,.16);color:#b79cff;border:1px solid rgba(139,92,246,.4)';return 'padding:4px 9px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.06em;white-space:nowrap;background:'+b;}
-  document.getElementById('guides-grid').innerHTML=guides.map(function(g){return '<a class="gcard" href="'+g.href+'" style="display:flex;flex-direction:column;padding:24px;border-radius:16px;background:#11141f;border:1px solid #1e2233;"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;"><span style="font-size:11px;font-weight:700;letter-spacing:.22em;color:#8e94a8;">'+g.kicker+'</span><span style="'+chip(g.tag)+'">'+g.tag+'</span></div><h3 style="margin:0 0 10px;font-family:\'Anton\',sans-serif;font-size:24px;line-height:1.05;">'+g.title+'</h3><p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#8e94a8;flex:1;">'+g.blurb+'</p><span style="font-size:13px;font-weight:700;color:#ff7a45;">Read guide →</span></a>';}).join('');
+  function guideCard(g){return '<a class="gcard" href="'+g.href+'" style="display:flex;flex-direction:column;padding:24px;border-radius:16px;background:#11141f;border:1px solid #1e2233;"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;"><span style="font-size:11px;font-weight:700;letter-spacing:.22em;color:#8e94a8;">'+g.kicker+'</span><span style="'+chip(g.tag)+'">'+g.tag+'</span></div><h3 style="margin:0 0 10px;font-family:\'Anton\',sans-serif;font-size:24px;line-height:1.05;">'+g.title+'</h3><p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#8e94a8;flex:1;">'+g.blurb+'</p><span style="font-size:13px;font-weight:700;color:#ff7a45;">'+(g.cta||'Read guide')+' →</span></a>';}
+  document.getElementById('guides-grid').innerHTML=guides.map(guideCard).join('');
+  var news=[
+    {kicker:'OCT 15 · TRAILER',tag:'CONFIRMED',title:'The launch trailer is here',blurb:'Rockstar\'s official launch trailer, captured on PS5, with a new Justice song. What it shows.',href:'articles/gta-6-launch-trailer.html',cta:'Read story'},
+    {kicker:'OCT 13 · PC',tag:'RUMOR',title:'GTA 6 on PC in early 2027?',blurb:'GamesBeat reports a January–March 2027 PC launch. Rockstar hasn\'t confirmed it.',href:'articles/gta-6-pc-release-q1-2027-report.html',cta:'Read story'},
+    {kicker:'OCT · LEAKS',tag:'RUMOR',title:'The October gameplay leaks',blurb:'First-person mode and a 200GB+ dev build? What\'s real and what isn\'t.',href:'articles/gta-6-gameplay-leak-dev-build-file-size.html',cta:'Read story'},
+    {kicker:'OCT 8 · MUSIC',tag:'CONFIRMED',title:'The first six radio stations',blurb:'Flash FM, Cocoteo FM, The Chamber 106.6 and more, plus radio on foot.',href:'articles/gta-6-radio-stations-revealed.html',cta:'Read story'},
+    {kicker:'RATING',tag:'CONFIRMED',title:'GTA 6 is rated M (17+)',blurb:'The ESRB rating and every content descriptor, for players and parents.',href:'articles/gta-6-esrb-rating-mature.html',cta:'Read story'},
+    {kicker:'SEP 29 · PREVIEW',tag:'CONFIRMED',title:'Game Informer cover story',blurb:'Florida storms, Leonida\'s wildlife and a dozen new screenshots.',href:'articles/gta-6-game-informer-cover-story-weather-wildlife.html',cta:'Read story'},
+    {kicker:'SEP 24 · MERCH',tag:'CONFIRMED',title:'The $399.99 Vice City box',blurb:'The Goodtime State collector\'s box — everything inside (the game isn\'t).',href:'articles/gta-6-goodtime-state-vice-city-collection-box.html',cta:'Read story'},
+    {kicker:'SEP 17 · MUSIC',tag:'CONFIRMED',title:'GTA VI: The Album',blurb:'34 original tracks on November 19 — Travis Scott, Morgan Wallen, Keith Richards and more.',href:'articles/gta-6-the-album-soundtrack-34-tracks.html',cta:'Read story'},
+    {kicker:'AUG 27 · GAMEPLAY',tag:'CONFIRMED',title:'The Extended Look, explained',blurb:'26 minutes of gameplay: character switching, six-star wanted levels, ~80-hour story.',href:'articles/gta-6-extended-look-netflix-everything-shown.html',cta:'Read story'},
+    {kicker:'AUG · RELEASE DATE',tag:'CONFIRMED',title:'Take-Two: November 19 is locked',blurb:'Take-Two reaffirmed the date and called pre-orders unprecedented.',href:'articles/gta-6-release-date-reaffirmed-take-two-august-2026.html',cta:'Read story'}
+  ];
+  document.getElementById('news-grid').innerHTML=news.map(guideCard).join('');
 
   var CHARS=[
     {name:'LUCIA',video:'assets/press/clips/lucia.mp4',poster:'assets/press/lucia-01.jpg',pos:'50% 22%',glow:'#ff2e63',blurb:'One of two playable leads and the first woman to headline a mainline GTA. Out of a Leonida penitentiary and hungry for a way up.'},
