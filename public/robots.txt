@@ -36,3 +36,4 @@ User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://stateofvice.com/sitemap.xml
+
