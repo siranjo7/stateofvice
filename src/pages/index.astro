@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { CAST, FACTS, LAUNCH_ISO, REGIONS, TRAILERS, tagClass } from '../data/site';
 import '../styles/home.css';
+import '../styles/premium.css';
 
 const all = await getCollection('articles');
 const news = all.filter((a) => a.data.kind === 'news').sort((a, b) => a.data.order - b.data.order);
