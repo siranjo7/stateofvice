@@ -22,7 +22,7 @@ body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antial
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* grain */
-.grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .055; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation: grain 1s steps(6) infinite; }
+.grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .03; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 @keyframes grain { 0%,100% { transform: translate(0,0) } 20% { transform: translate(-3%,2%) } 40% { transform: translate(2%,-3%) } 60% { transform: translate(-2%,-1%) } 80% { transform: translate(3%,3%) } }
 
 /* scroll progress */
@@ -68,10 +68,10 @@ body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antial
 
 /* cursor */
 .cursor, .cursor-dot { position: fixed; top: 0; left: 0; z-index: 200; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity .3s; }
-.cursor { width: 38px; height: 38px; border: 1px solid rgba(255, 255, 255, .55); display: grid; place-items: center; transition: width .4s var(--ease), height .4s var(--ease), background .3s, border-color .3s, opacity .3s; mix-blend-mode: difference; }
+.cursor { width: 30px; height: 30px; border: 1px solid rgba(255, 255, 255, .4); display: grid; place-items: center; transition: width .4s var(--ease), height .4s var(--ease), background .3s, border-color .3s, opacity .3s; mix-blend-mode: difference; }
 .cursor-dot { width: 5px; height: 5px; background: #fff; }
 .cursor span { font: 700 9px/1 var(--mono); letter-spacing: .14em; color: #000; opacity: 0; transition: opacity .2s; }
-.cursor.is-link { width: 64px; height: 64px; background: #fff; border-color: #fff; }
+.cursor.is-link { width: 46px; height: 46px; background: #fff; border-color: #fff; }
 .cursor.is-label { width: 86px; height: 86px; background: #fff; border-color: #fff; mix-blend-mode: normal; }
 .cursor.is-label span { opacity: 1; }
 html.has-cursor .cursor, html.has-cursor .cursor-dot { opacity: 1; }

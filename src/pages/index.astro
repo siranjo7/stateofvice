@@ -9,7 +9,7 @@ const news = all.filter((a) => a.data.kind === 'news').sort((a, b) => a.data.ord
 const guides = all.filter((a) => a.data.kind === 'guide').sort((a, b) => a.data.order - b.data.order);
 const count = (t: string) => news.filter((n) => n.data.tag === t).length;
 const confirmed = FACTS.filter((f) => f.tag === 'CONFIRMED').length;
-const trailerArt = ['/assets/press/jason-lucia-13.jpg', '/assets/press/jason-lucia-09.jpg', '/assets/press/jason-lucia-01.jpg', '/assets/press/vice-city-03.jpg'];
+const trailerArt = ['/assets/press/jason-lucia-13.webp', '/assets/press/jason-lucia-09.webp', '/assets/press/jason-lucia-01.webp', '/assets/press/vice-city-03.webp'];
 const jsonld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'State of Vice', url: 'https://stateofvice.com/', description: 'The honest GTA 6 hub — every claim labeled CONFIRMED or RUMOR.' });
 ---
 <Base
@@ -23,7 +23,7 @@ const jsonld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebS
   <header class="hero" id="top">
     <div class="hero-pin">
       <div class="hero-media" id="heroMedia">
-        <video autoplay muted loop playsinline preload="auto" poster="/assets/press/keyart.jpg" src="/assets/press/clips/hero-couple.mp4" aria-hidden="true"></video>
+        <video id="heroVideo" muted loop playsinline preload="none" poster="/assets/press/keyart.webp" data-src="/assets/press/clips/hero-couple.mp4" aria-hidden="true"></video>
       </div>
       <div class="hero-title" id="heroTitle">
         <div class="hero-kick" id="heroKick">GRAND THEFT AUTO VI · LEONIDA</div>
@@ -100,7 +100,7 @@ const jsonld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebS
     </nav>
     {REGIONS.map((r, i) => (
       <article class="rg" id={`region-${i + 1}`}>
-        <div class="bg" style={`background-image:url('${r.shot}')`}></div>
+        <img class="bg" src={r.shot} alt="" loading="lazy" decoding="async" />
         <img class="pc" src={r.postcard} alt={`${r.name} — official Rockstar postcard`} loading="lazy" />
         <div class="in">
           <div class="num" aria-hidden="true">0{i + 1}</div>

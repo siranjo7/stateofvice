@@ -245,7 +245,21 @@ function initGuidePreview(): void {
   });
 }
 
+/** Streams the 6 MB hero video only after the page has loaded, and never on data-saver. */
+function loadHeroVideo(): void {
+  const v = $<HTMLVideoElement>('heroVideo');
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  if (!v?.dataset.src || conn?.saveData || reducedMotion()) return;
+  const start = (): void => {
+    v.src = v.dataset.src ?? '';
+    v.play().catch(() => undefined);
+  };
+  if (document.readyState === 'complete') setTimeout(start, 300);
+  else addEventListener('load', () => setTimeout(start, 300), { once: true });
+}
+
 export async function initHome(): Promise<void> {
+  loadHeroVideo();
   initCountdown();
   document.querySelectorAll<HTMLVideoElement>('video[autoplay]').forEach((v) => { v.play().catch(() => undefined); });
   initCast();
