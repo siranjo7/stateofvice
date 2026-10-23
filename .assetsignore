@@ -1,6 +1,0 @@
-# Exclude non-web files from Cloudflare Workers static-asset upload
-.git
-.git/**
-.gitignore
-README.md
-*.zip

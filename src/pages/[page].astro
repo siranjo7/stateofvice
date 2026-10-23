@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+// Standalone pages (about, wallpapers) from src/content/pages/.
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((entry) => ({ params: { page: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+---
+<Base title={d.title} description={d.description} ogTitle={d.ogTitle || d.title} ogDescription={d.ogDescription || d.description} ogImage={entry.id === 'wallpapers' ? '/assets/og/og-wallpapers.png' : undefined} jsonld={d.jsonld} styles={d.styles} current={entry.id}>
+  <article class={`container prose standalone${d.wide ? ' wide' : ''}`}>
+    <Fragment set:html={d.body} />
+  </article>
+</Base>

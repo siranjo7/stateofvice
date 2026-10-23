@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import { tagClass } from '../data/site';
+import '../styles/article.css';
+
+interface Props { entry: CollectionEntry<'articles'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const all = await getCollection('articles');
+const pool = all.filter((a) => a.id !== entry.id);
+const related = [
+  ...pool.filter((a) => a.data.kind === d.kind).sort((a, b) => a.data.order - b.data.order).filter((a) => a.data.order > d.order),
+  ...pool.filter((a) => a.data.kind === d.kind).sort((a, b) => a.data.order - b.data.order),
+  ...pool,
+].filter((a, i, arr) => arr.findIndex((b) => b.id === a.id) === i).slice(0, 3);
+const fmt = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+const ogImage = (d.jsonld.join(' ').match(/"image":"https:\/\/stateofvice\.com(\/assets\/[^"]+)"/) ?? [])[1];
+---
+<Base title={d.title} description={d.description} ogTitle={d.ogTitle || d.title} ogDescription={d.ogDescription || d.description} ogImage={ogImage} ogType="article" jsonld={d.jsonld} styles={d.styles} current={d.kind === 'news' ? 'news' : ''} page="article">
+  <header class="ahero">
+    <div class="ahero-media"><img id="aheroImg" src={d.heroImage} alt={d.heroAlt} fetchpriority="high" /></div>
+    <div class="ahero-in">
+      <nav class="ahero-bc" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href={d.kind === 'news' ? '/#news' : '/#guides'}>{d.kind === 'news' ? 'News' : 'Guides'}</a><span>/</span><span aria-current="page">{d.crumb}</span></nav>
+      <div class="ahero-tags"><span class={`tag ${tagClass(d.tag)}`}>{d.tag}</span><span class="ahero-kick">{d.kicker}</span></div>
+      <h1 data-split>{d.h1}</h1>
+      <div class="ahero-meta">
+        <span>Updated <strong>{fmt(d.updated)}</strong></span><span class="sep"></span><span><span id="readTime">—</span> min read</span><span class="sep"></span><span>By the State of Vice desk</span>
+      </div>
+    </div>
+    <div class="ahero-scroll" aria-hidden="true"></div>
+  </header>
+
+  <div class="awrap">
+    <aside class="toc" aria-label="On this page">
+      <p class="toc-h">On this page</p>
+      <ol id="toc"></ol>
+      <div class="toc-share">
+        <button class="btn sm ghost" type="button" id="copyLink">Copy link</button>
+      </div>
+    </aside>
+    <article class="container prose" id="prose">
+      {d.metaLine && <div class="meta-row" set:html={d.metaLine} />}
+      <Fragment set:html={d.body} />
+    </article>
+  </div>
+
+  <section class="related" aria-labelledby="related-h">
+    <h2 id="related-h" data-split>KEEP READING</h2>
+    <div class="related-grid">
+      {related.map((r) => (
+        <a class="rcard" href={`/articles/${r.id}.html`} data-reveal data-cursor="READ">
+          <span class="rimg"><img src={r.data.heroImage} alt="" loading="lazy" /></span>
+          <span class={`tag ${tagClass(r.data.tag)}`}>{r.data.tag}</span>
+          <h3>{r.data.cardTitle}</h3>
+          <p>{r.data.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

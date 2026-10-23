@@ -1,0 +1,19 @@
+---
+interface Props { current?: string }
+const { current = '' } = Astro.props;
+const links = [
+  { href: '/#news', label: 'News', key: 'news' },
+  { href: '/#trailers', label: 'Trailers', key: 'trailers' },
+  { href: '/#leonida', label: 'Leonida', key: 'leonida' },
+  { href: '/#cast', label: 'Cast', key: 'cast' },
+  { href: '/wallpapers.html', label: 'Wallpapers', key: 'wallpapers' },
+];
+---
+<header class="nav" id="nav">
+  <a class="wm" href="/" aria-label="State of Vice home"><small>STATE OF</small><b><span class="vi">VI</span>CE</b></a>
+  <ul class="nav-links" id="navLinks">
+    {links.map((l) => <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>)}
+  </ul>
+  <a class="btn sm nav-cta" href="/articles/gta-6-editions-preorder-guide.html" data-magnetic>Pre-order guide</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+</header>

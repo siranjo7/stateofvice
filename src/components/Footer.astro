@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+const news = (await getCollection('articles', (a) => a.data.kind === 'news')).sort((a, b) => a.data.order - b.data.order).slice(0, 5);
+const guides = (await getCollection('articles', (a) => a.data.kind === 'guide')).sort((a, b) => a.data.order - b.data.order).slice(0, 5);
+const year = new Date().getFullYear();
+---
+<footer class="foot">
+  <p class="foot-big" aria-hidden="true">STATE OF VICE</p>
+  <div class="foot-grid">
+    <div>
+      <a class="wm" href="/"><small>STATE OF</small><b><span class="vi">VI</span>CE</b></a>
+      <p>Every GTA 6 question, answered straight. CONFIRMED vs RUMOR on every claim — no hype.</p>
+      <p><a class="btn sm ghost" href="https://www.youtube.com/@StateofVice" target="_blank" rel="noopener">▶ YouTube</a></p>
+    </div>
+    <div><h4>Latest</h4><ul>{news.map((a) => <li><a href={`/articles/${a.id}.html`}>{a.data.cardTitle}</a></li>)}</ul></div>
+    <div><h4>Guides</h4><ul>{guides.map((a) => <li><a href={`/articles/${a.id}.html`}>{a.data.cardTitle}</a></li>)}</ul></div>
+    <div><h4>Site</h4><ul><li><a href="/wallpapers.html">Wallpapers</a></li><li><a href="/about.html">Editorial policy</a></li><li><a href="/about.html">About</a></li><li><a href="/sitemap.xml">Sitemap</a></li></ul></div>
+  </div>
+  <p class="legal"><span>State of Vice is an unofficial fan site, not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of their respective owners.</span><span>© {year} State of Vice</span></p>
+</footer>

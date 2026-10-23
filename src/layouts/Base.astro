@@ -1,0 +1,78 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/content.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  jsonld?: string[];
+  styles?: string[];
+  current?: string;
+  page?: 'home' | 'article' | 'page';
+  preload?: boolean;
+}
+const {
+  title, description, ogTitle = title, ogDescription = description,
+  ogImage = '/assets/og/og-home.png', ogType = 'website', jsonld = [], styles = [], current, page = 'page', preload = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname === '/index.html' ? '/' : Astro.url.pathname, Astro.site);
+const image = new URL(ogImage, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#05060a" />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="State of Vice" />
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={ogDescription} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={image} />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  {jsonld.map((j) => <script type="application/ld+json" set:html={j} />)}
+  {styles.map((s) => <style is:inline set:html={s} />)}
+  <script is:inline>
+    document.documentElement.classList.toggle('no-motion', matchMedia('(prefers-reduced-motion: reduce)').matches);
+  </script>
+</head>
+<body data-page={page} class={page}>
+  {preload && (
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-in"><div class="loader-word">STATE OF VICE</div><div class="loader-count"><span id="loaderCount">000</span> / LEONIDA</div></div>
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+  )}
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <Nav current={current} />
+  <main id="main"><slot /></main>
+  <Footer />
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video player">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close video">✕</button>
+    <div class="lightbox-frame" id="lightboxFrame"></div>
+  </div>
+  <script>
+    import { initSite } from '../scripts/site';
+    initSite();
+  </script>
+</body>
+</html>

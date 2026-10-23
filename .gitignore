@@ -1,0 +1,8 @@
+node_modules
+node_modules.nosync
+dist
+.astro
+.wrangler
+.DS_Store
+.dev.vars*
+.env*

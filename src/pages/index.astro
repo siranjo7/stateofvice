@@ -1,0 +1,185 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { CAST, FACTS, LAUNCH_ISO, REGIONS, TRAILERS, tagClass } from '../data/site';
+import '../styles/home.css';
+
+const all = await getCollection('articles');
+const news = all.filter((a) => a.data.kind === 'news').sort((a, b) => a.data.order - b.data.order);
+const guides = all.filter((a) => a.data.kind === 'guide').sort((a, b) => a.data.order - b.data.order);
+const count = (t: string) => news.filter((n) => n.data.tag === t).length;
+const confirmed = FACTS.filter((f) => f.tag === 'CONFIRMED').length;
+const trailerArt = ['/assets/press/jason-lucia-13.jpg', '/assets/press/jason-lucia-09.jpg', '/assets/press/jason-lucia-01.jpg', '/assets/press/vice-city-03.jpg'];
+const jsonld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'State of Vice', url: 'https://stateofvice.com/', description: 'The honest GTA 6 hub — every claim labeled CONFIRMED or RUMOR.' });
+---
+<Base
+  title="State of Vice — Every GTA 6 question, answered straight"
+  description="The honest GTA 6 hub. Every claim labeled CONFIRMED or RUMOR. Launch trailer, release date, pre-loads, map of Leonida, characters and every announcement. GTA VI launches Nov 19, 2026 on PS5 & Xbox Series X|S."
+  ogDescription="The honest GTA 6 hub. CONFIRMED vs RUMOR on every claim. Launches Nov 19, 2026 on PS5 & Xbox Series X|S."
+  jsonld={[jsonld]}
+  page="home"
+  preload
+>
+  <header class="hero" id="top">
+    <div class="hero-pin">
+      <div class="hero-media" id="heroMedia">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/press/keyart.jpg" src="/assets/press/clips/hero-couple.mp4" aria-hidden="true"></video>
+      </div>
+      <div class="hero-title" id="heroTitle">
+        <div class="hero-kick" id="heroKick">GRAND THEFT AUTO VI · LEONIDA</div>
+        <h1 id="heroH1">STATE<br />OF VICE</h1>
+        <p class="hero-sub" id="heroSub">Every GTA 6 question, answered straight.</p>
+        <div class="hero-cta" id="heroCta">
+          <button class="btn" type="button" data-video="rz1B4B2yBZY" data-video-title="Grand Theft Auto VI Launch Trailer" data-cursor="PLAY" data-magnetic>▶ Watch the launch trailer</button>
+          <a class="btn ghost" href="#news" data-magnetic>Latest news</a>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <div>Nov 19, 2026<br />PS5 · Xbox Series X|S</div>
+        <div class="scroll-cue"><i></i>Scroll</div>
+        <div class="cd" id="cd" data-launch={LAUNCH_ISO} role="timer" aria-label="Countdown to launch">
+          <div><b data-u="d">00</b>Days</div><div><b data-u="h">00</b>Hrs</div><div><b data-u="m">00</b>Min</div><div><b data-u="s">00</b>Sec</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker" id="ticker">
+    <div class="ticker-track" id="tickerTrack">
+      {[0, 1].map((k) => news.map((n) => (
+        <a href={`/articles/${n.id}.html`} tabindex={k ? -1 : undefined} aria-hidden={k ? 'true' : undefined}><span class={`tag ${tagClass(n.data.tag)}`}>{n.data.tag}</span>{n.data.cardTitle}</a>
+      )))}
+    </div>
+  </div>
+
+  <section id="news" aria-labelledby="news-h">
+    <div class="sh"><h2 id="news-h" data-split><em>the road to november 19</em>LATEST</h2><p data-reveal>One story per announcement. Every claim labeled CONFIRMED or RUMOR, sourced to Rockstar, Take-Two or the ratings boards.</p></div>
+    <div class="reel-bar">
+      <div class="chips" role="group" aria-label="Filter news">
+        <button type="button" data-filter="ALL" aria-pressed="true">All<b>{news.length}</b></button>
+        <button type="button" data-filter="CONFIRMED" aria-pressed="false">Confirmed<b>{count('CONFIRMED')}</b></button>
+        <button type="button" data-filter="RUMOR" aria-pressed="false">Rumor<b>{count('RUMOR')}</b></button>
+      </div>
+      <div class="reel-progress" aria-hidden="true"><i id="reelProgress"></i></div>
+    </div>
+    <div class="reel" id="reel">
+      <div class="reel-track" id="reelTrack">
+        {news.map((n, i) => (
+          <a class={`nc${i === 0 ? ' lead' : ''}`} href={`/articles/${n.id}.html`} data-tag={n.data.tag} data-cursor="READ">
+            <img src={n.data.heroImage} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
+            <span class="shine"></span>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="in">
+              <div class="meta"><span class={`tag ${tagClass(n.data.tag)}`}>{n.data.tag}</span><span>{n.data.dateLabel} · {n.data.cardKicker}</span></div>
+              <h3>{n.data.cardTitle}</h3>
+              <p>{n.data.blurb}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="trailers" aria-labelledby="trailers-h">
+    <div class="sh"><h2 id="trailers-h" data-split><em>official rockstar videos</em>WATCH</h2><p data-reveal>Every official trailer and the full 26-minute Extended Look, in one place. Click to play.</p></div>
+    <div class="trailers-grid">
+      {TRAILERS.map((t, i) => (
+        <button class="tcard" type="button" data-video={t.id} data-video-title={`Grand Theft Auto VI — ${t.title}`} data-cursor="PLAY" data-reveal>
+          <img src={trailerArt[i]} alt="" loading="lazy" />
+          <span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z" /></svg></span>
+          <span class="in"><h3>{t.title}</h3><span>{t.sub}</span></span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <section class="regions" id="leonida" aria-labelledby="leonida-h">
+    <div class="sh"><h2 id="leonida-h" data-split><em>six confirmed regions</em>LEONIDA</h2><p data-reveal>Rockstar's take on modern Florida. The map is "very big" — no official size yet. <a href="/articles/gta-6-map-leonida-explained.html" style="color:var(--orange)">Full map guide →</a></p></div>
+    <nav class="region-dots" id="regionDots" aria-label="Regions">
+      {REGIONS.map((r, i) => <a href={`#region-${i + 1}`}>{r.name}</a>)}
+    </nav>
+    {REGIONS.map((r, i) => (
+      <article class="rg" id={`region-${i + 1}`}>
+        <div class="bg" style={`background-image:url('${r.shot}')`}></div>
+        <img class="pc" src={r.postcard} alt={`${r.name} — official Rockstar postcard`} loading="lazy" />
+        <div class="in">
+          <div class="num" aria-hidden="true">0{i + 1}</div>
+          <div><h3>{r.name.toUpperCase()}</h3><div class="rnote">{r.note}</div><p>{r.blurb}</p></div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section id="cast" aria-labelledby="cast-h">
+    <div class="sh"><h2 id="cast-h" data-split><em>hover to bring them to life</em>THE CAST</h2><p data-reveal>Eight characters Rockstar has officially revealed. Click one for their story. Voice actors: not announced.</p></div>
+    <div class="cast" id="castGrid">
+      {CAST.map((c, i) => (
+        <button class="cc" type="button" data-char={i} data-cursor="MEET" aria-label={`${c.name} — ${c.role}`}>
+          <img src={c.poster} alt="" loading="lazy" />
+          <video muted loop playsinline preload="none" src={c.video} aria-hidden="true"></video>
+          <span class="lbl"><b>{c.name.toUpperCase()}</b><span>{c.role}</span></span>
+        </button>
+      ))}
+    </div>
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerName">
+      <button class="drawer-scrim" id="drawerScrim" type="button" aria-label="Close"></button>
+      <div class="drawer-panel">
+        <button class="drawer-close" id="drawerClose" type="button" aria-label="Close">✕</button>
+        <div class="media"><img id="drawerImg" src={CAST[0].still} alt="" /></div>
+        <div class="body">
+          <span class="tag c">CONFIRMED</span>
+          <h3 id="drawerName">{CAST[0].name}</h3>
+          <p id="drawerBio">{CAST[0].bio}</p>
+          <a class="btn sm" href="/articles/gta-6-characters-confirmed.html">Every confirmed character →</a>
+          <div class="drawer-nav"><button class="btn sm ghost" type="button" id="drawerPrev" aria-label="Previous character">←</button><button class="btn sm ghost" type="button" id="drawerNext" aria-label="Next character">→</button></div>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" id="castData" set:html={JSON.stringify(CAST)} />
+  </section>
+
+  <section id="facts" aria-labelledby="facts-h">
+    <div class="sh"><h2 id="facts-h" data-split><em>the honest scoreboard</em>THE FACTS</h2><p data-reveal>The quickest honest answers to the questions everyone asks — and how much is actually confirmed.</p></div>
+    <div class="truth">
+      <div class="meter" id="meter" data-value={confirmed} data-total={FACTS.length}>
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="mg" x1="0" x2="1"><stop offset="0" stop-color="#b06ef7" /><stop offset=".5" stop-color="#ff2e80" /><stop offset="1" stop-color="#ff9a45" /></linearGradient></defs>
+          <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10" />
+          <circle id="meterArc" cx="60" cy="60" r="52" fill="none" stroke="url(#mg)" stroke-width="10" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" />
+        </svg>
+        <div class="val"><div><b><span id="meterNum">{confirmed}</span>/{FACTS.length}</b><small>key facts confirmed</small></div></div>
+      </div>
+      <div class="facts">
+        {FACTS.map((f) => (
+          <a class="f" href={f.href} data-reveal><span>{f.k}</span><b>{f.v}</b><span class={`tag ${tagClass(f.tag)}`}>{f.tag}</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="guides" aria-labelledby="guides-h">
+    <div class="sh"><h2 id="guides-h" data-split><em>evergreen answers, kept current</em>GUIDES</h2><p data-reveal>The questions that don't go away — answered once, updated every time Rockstar says something new.</p></div>
+    <div class="guides" id="guideList">
+      {guides.map((g, i) => (
+        <a class="gl" href={`/articles/${g.id}.html`} data-preview={g.data.heroImage} data-reveal>
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{g.data.cardTitle}</h3>
+          <p>{g.data.blurb}</p>
+          <span class={`tag ${tagClass(g.data.tag)}`}>{g.data.tag}</span>
+        </a>
+      ))}
+    </div>
+    <div class="gl-preview" id="glPreview" aria-hidden="true"><img id="glPreviewImg" src={guides[0].data.heroImage} alt="" /></div>
+  </section>
+
+  <section class="finale" aria-labelledby="finale-h">
+    <div class="in">
+      <h2 id="finale-h" data-split>SEE YOU IN<br />LEONIDA</h2>
+      <p data-reveal>Pre-loads open November 12. Launch is November 19.</p>
+      <div class="row" data-reveal>
+        <a class="btn" href="/articles/gta-6-editions-preorder-guide.html" data-magnetic>Pre-order guide →</a>
+        <a class="btn ghost" href="/articles/gta-6-release-date-platforms-pc.html" data-magnetic>Release details</a>
+      </div>
+    </div>
+  </section>
+</Base>
