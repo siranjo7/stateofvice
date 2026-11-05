@@ -36,13 +36,13 @@ export type Verdict = 'CONFIRMED' | 'RUMOR' | 'UNKNOWN';
 export interface Fact { k: string; v: string; tag: Verdict; href: string }
 export const FACTS: Fact[] = [
   { k: 'Release', v: 'Nov 19, 2026', tag: 'CONFIRMED', href: '/articles/gta-6-release-date-platforms-pc.html' },
-  { k: 'Pre-load', v: 'Nov 12', tag: 'CONFIRMED', href: '/articles/gta-6-release-date-platforms-pc.html' },
+  { k: 'Pre-load', v: 'Nov 10', tag: 'CONFIRMED', href: '/articles/gta-6-release-date-platforms-pc.html' },
   { k: 'Price', v: '$79.99 / $99.99', tag: 'CONFIRMED', href: '/articles/gta-6-price-what-to-budget.html' },
   { k: 'Platforms', v: 'PS5 · Xbox Series X|S', tag: 'CONFIRMED', href: '/articles/gta-6-release-date-platforms-pc.html' },
   { k: 'Rating', v: 'ESRB M 17+', tag: 'CONFIRMED', href: '/articles/gta-6-esrb-rating-mature.html' },
   { k: 'Online at launch', v: 'Not announced', tag: 'CONFIRMED', href: '/articles/gta-6-extended-look-netflix-everything-shown.html' },
   { k: 'PC', v: 'Q1 2027?', tag: 'RUMOR', href: '/articles/gta-6-pc-release-q1-2027-report.html' },
-  { k: 'File size', v: 'Not announced', tag: 'UNKNOWN', href: '/articles/gta-6-gameplay-leak-dev-build-file-size.html' },
+  { k: 'File size', v: '212GB (PS5)', tag: 'CONFIRMED', href: '/articles/gta-6-gameplay-leak-dev-build-file-size.html' },
 ];
 
 export const tagClass = (t: string): string => (t === 'CONFIRMED' ? 'c' : t === 'RUMOR' ? 'r' : 'a');
