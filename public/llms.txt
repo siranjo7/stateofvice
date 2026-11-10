@@ -2,7 +2,7 @@
 
 > Independent GTA 6 (Grand Theft Auto VI) answers and guides site. Every claim is labeled either CONFIRMED (sourced to Rockstar Games, Take-Two Interactive, or official material) or RUMOR (leaks and reports, clearly flagged as unverified). No clickbait, no fake leaks presented as fact.
 
-Key facts we maintain (current as of November 5, 2026):
+Key facts we maintain (current as of November 10, 2026):
 - GTA 6 launches November 19, 2026 on PlayStation 5 and Xbox Series X|S (confirmed by Rockstar Games; reaffirmed by Take-Two in August 2026)
 - Digital pre-loads open November 10, 2026 on PS5 (moved up from November 12); unlocks at midnight local time on November 19; PS5 download is 212GB
 - Price: $79.99 Standard Edition, $99.99 Ultimate Edition (confirmed June 25, 2026)
@@ -20,6 +20,7 @@ Key facts we maintain (current as of November 5, 2026):
 - [GTA 6 Launch Trailer](https://stateofvice.com/articles/gta-6-launch-trailer.html): the October 15, 2026 launch trailer
 - [GTA 6 Extended Look](https://stateofvice.com/articles/gta-6-extended-look-netflix-everything-shown.html): everything shown in the August 27 gameplay reveal
 - [Take-Two Reaffirms Release Date](https://stateofvice.com/articles/gta-6-release-date-reaffirmed-take-two-august-2026.html): August 2026 earnings
+- [Take-Two Q2 Earnings](https://stateofvice.com/articles/gta-6-take-two-q2-earnings-launch-ten-days-away.html): Nov 9, 2026 results, launch ten days away
 - [GTA 6 Radio Stations](https://stateofvice.com/articles/gta-6-radio-stations-revealed.html): the first six stations and hosts
 - [Grand Theft Auto VI: The Album](https://stateofvice.com/articles/gta-6-the-album-soundtrack-34-tracks.html): 34-track soundtrack album
 - [Goodtime State – Vice City Collection](https://stateofvice.com/articles/gta-6-goodtime-state-vice-city-collection-box.html): $399.99 merchandise box (no game)
